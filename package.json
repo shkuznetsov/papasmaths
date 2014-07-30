@@ -1,0 +1,25 @@
+{
+	"version": "0.2.0",
+	"name": "papas-maths",
+	"title": "Papa's Maths",
+	"description": "Pre-school maths worksheet generator",
+	"homepage": "http://papasmaths.kuznetsov.by",
+	"author": {
+		"name": "Alexander Kuznetsov",
+		"url": "http://kuznetsov.by/"
+	},
+	"engines": {
+		"node": ">=0.10.21"
+	},
+	"dependencies": {
+		"yargs": "1.2.1",
+		"gulp-concat": "~2.2.0",
+		"gulp-rename": "~1.2.0",
+		"gulp-uglify": "~0.2.1",
+		"gulp-sass": "~0.7.2",
+		"gulp-minify-css": "~0.3.4",
+		"gulp-gzip": "~0.0.5",
+		"gulp-replace": "~0.2.0",
+		"gulp": "~3.8"
+	}
+}

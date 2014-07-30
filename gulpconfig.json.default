@@ -1,0 +1,10 @@
+{
+	"aws" : {
+		"credentials" : {
+			"key" : "",
+			"secret" : ""
+		},
+		"bucket" : "",
+		"region" : ""
+	}
+}

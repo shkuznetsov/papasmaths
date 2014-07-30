@@ -1,0 +1,19 @@
+.error {
+	margin: 50px;
+	border: solid red 1px;
+	border-radius: 10px;
+	padding: 20px;
+	background-color: #fcc;
+	font-family: arial;
+}
+
+.error div {
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+.error div:first-child {
+	font-size: 26px;
+	font-weight: bold;
+	margin-top: 0;
+}

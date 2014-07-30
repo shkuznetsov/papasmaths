@@ -1,0 +1,5 @@
+/node_modules
+/gulpconfig.json
+/www/css/build.*
+/www/js/build.*
+/www/index.html

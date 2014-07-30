@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>Papa's maths</title>
+	<meta name="description" content="Pre-school maths worksheet generator">
+	<meta property="og:image" content="/fb.png">
+	<script src="js/build.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/build.css">
+</head>
+<body>
+<div id="tasks-container"></div>
+<script>
+
+$(function()
+{
+	var url = purl();
+
+	var tasks = url.attr('fragment');
+
+	if (tasks)
+	{
+		tasks = tasks.split(',');
+
+		for (var i in tasks)
+		{
+			(new Task(tasks[i])).build().appendTo('#tasks-container');
+		}
+	}
+	else
+	{
+		$('#tasks-container')
+			.append($('<div>').attr('class', 'error')
+				.append($('<div>').text("Sorry guys, papa hasn't finished here yet"))
+				.append($('<div>').text('Tasks editor coming soon. Stay tuned!')));
+	}
+});
+
+</script>
+</body>
+</html>
