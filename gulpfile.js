@@ -2,6 +2,7 @@ var
 	fs = require('fs'),
 	path = require('path'),
 	gulp = require('gulp'),
+	gutil = require('gulp-util'),
 	concat = require('gulp-concat'),
 	rename = require('gulp-rename'),
 	uglify = require('gulp-uglify'),
@@ -9,7 +10,9 @@ var
 	sass = require('gulp-sass'),
 	mincss = require('gulp-minify-css'),
 	replace = require('gulp-replace'),
-	config = JSON.parse(fs.readFileSync('gulpconfig.json')),
+	bump = require('gulp-bump'),
+	git = require('gulp-git'),
+	s3 = require('gulp-s3'),
 	pkg = JSON.parse(fs.readFileSync('package.json')),
 	args = require('yargs').argv,
 	options = {
@@ -51,7 +54,12 @@ var
 			}
 		},
 		git: {
-			remote:
+			remote: 'origin',
+			branch: 'master',
+			tagPrefix: 'v-'
+		},
+		s3: {
+			ttl: 300
 		}
 	};
 
@@ -101,28 +109,46 @@ gulp.task('watch', function()
 	gulp.watch([js, css], ['build']);
 });
 
-gulp.task('bump', function (cb)
+gulp.task('bump', function ( cb )
 {
-	var version = args['version'],
-		message = 'Release ' + version;
+	var version = args['newver'];
 
-	if (typeof version === 'undefined')
+	if (typeof version != 'undefined')
 	{
-		cb();
+		var message = 'Release ' + version,
+			tag = options.git.tagPrefix + version.replace(/\./g, '-');
+
+		return gulp.src('package.json')
+			.pipe(bump({version: version}))
+			.pipe(gulp.dest('./'))
+			.pipe(git.commit(message))
+			.on('end', function ( )
+			{
+				return this.pipe(git.tag(tag, message, {}, function ( )
+				{
+					git.push(options.git.remote, options.git.branch, {args: '--tags'}).end();
+				}));
+			});
 	}
 	else
 	{
-		gulp.src('package.json')
-			.pipe(bump({version: version}))
-			.pipe(gulp.dest('./'))
-			.pipe(packageFilter.restore())
-			//.pipe(git.commit(message))
-			.on('end', function () {
-				git.commit(message, function () {
-					git.tag('v' + version, message, {}, function () {
-						git.push(config.git.remote, config.git.branch, {args: '--tags'}, cb);
-					});
-				});
-			});
+		cb();
 	}
 });
+
+gulp.task('upload', ['build'], function ( )
+{
+	var src =
+	[
+		'www/**/*.gz',
+		'www/**/*.png',
+		'www/**/index.html'
+	];
+
+	var credentials = JSON.parse(fs.readFileSync('aws.json')),
+		opt = {headers: {'Cache-Control': 'max-age=' + options.s3.ttl}};
+
+    return gulp.src(src).pipe(s3(credentials, opt));
+});
+
+gulp.task('release', ['build', 'bump', 'upload']);
