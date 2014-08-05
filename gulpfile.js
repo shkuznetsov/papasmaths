@@ -18,6 +18,7 @@ var
 	git = require('gulp-git'),
 	s3 = require('gulp-s3'),
 	pkg = JSON.parse(fs.readFileSync('package.json')),
+	config = JSON.parse(fs.readFileSync('config.json')),
 	args = require('yargs').argv,
 	options = {
 		paths: {
@@ -108,6 +109,7 @@ gulp.task('build-html', function()
 		.pipe(replace('<% description %>', pkg.description))
 		.pipe(replace('<% author %>', pkg.author.name + ', ' + pkg.author.email + ', ' + pkg.author.url))
 		.pipe(replace('<% version %>', pkg.version))
+		.pipe(replace('<% ga %>', config.ga))
 		.pipe(minhtml(options.minhtml))
 		.pipe(uglifyhtml(options.uglify))
 		.pipe(rename(options.paths.html.output.min))
