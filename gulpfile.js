@@ -165,8 +165,7 @@ gulp.task('upload', ['build'], function ( )
 	var src =
 	[
 		'dist/**/*.gz',
-		'dist/**/*.png',
-		'dist/**/*.html'
+		'dist/**/*.png'
 	];
 
 	var credentials = JSON.parse(fs.readFileSync('aws.json')),
