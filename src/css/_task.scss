@@ -1,0 +1,279 @@
+.task {
+	margin: 50px;
+}
+
+.task:after {
+	content: " ";
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.task > div {
+	float: left;
+	height: 100px;
+	width: 100px;
+}
+
+.task > div.text {
+	font-family: arial;
+	font-size: 100px;
+	text-align: center;
+	line-height: 100px;
+}
+
+.task > div.operator {
+//	width: 80px;
+}
+
+.task > div.answer {
+	border: solid black 4px;
+	margin: -4px 10px 0 10px;
+}
+
+.task > div.objects {
+	position: relative;
+	text-align: auto;
+}
+
+.task > div.objects img {
+	position: absolute;
+}
+
+// one
+
+.task .objects.count-1 img {
+	max-width: 80px;
+	max-height: 80px;
+	left: 10px;
+	top: 10px;
+}
+
+// two
+
+.task .objects.count-2 img {
+	max-width: 50px;
+	max-height: 50px;
+}
+
+.task .objects.count-2 img:nth-child(2) {
+	left: 50px;
+	top: 50px;
+}
+
+// three
+
+.task .objects.count-3 img {
+	max-width: 45px;
+	max-height: 45px;
+}
+
+.task .objects.count-3 img:nth-child(2) {
+	left: 55px;
+}
+
+.task .objects.count-3 img:nth-child(3) {
+	left: 27px;
+	top: 55px;
+}
+
+// four
+
+.task .objects.count-4 img {
+	max-width: 45px;
+	max-height: 45px;
+}
+
+.task .objects.count-4 img:nth-child(2) {
+	left: 55px;
+}
+
+.task .objects.count-4 img:nth-child(3) {
+	top: 55px;
+}
+
+.task .objects.count-4 img:nth-child(4) {
+	left: 55px;
+	top: 55px;
+}
+
+// five
+
+.task .objects.count-5 img {
+	max-width: 35px;
+	max-height: 35px;
+}
+
+.task .objects.count-5 img:nth-child(2) {
+	left: 65px;
+}
+
+.task .objects.count-5 img:nth-child(3) {
+	left: 32px;
+	top: 32px;
+}
+
+.task .objects.count-5 img:nth-child(4) {
+	top: 65px;
+}
+
+.task .objects.count-5 img:nth-child(5) {
+	left: 65px;
+	top: 65px;
+}
+
+// six
+
+.task .objects.count-6 img {
+	max-width: 32px;
+	max-height: 32px;
+}
+
+.task .objects.count-6 img:nth-child(1) {
+	top: 8px;
+}
+
+.task .objects.count-6 img:nth-child(2) {
+	top: 8px;
+	left: 68px;
+}
+
+.task .objects.count-6 img:nth-child(3) {
+	left: 34px;
+	top: 20px;
+}
+
+.task .objects.count-6 img:nth-child(4) {
+	top: 56px;
+}
+
+.task .objects.count-6 img:nth-child(5) {
+	left: 68px;
+	top: 56px;
+}
+
+.task .objects.count-6 img:nth-child(6) {
+	left: 34px;
+	top: 68px;
+}
+
+// seven
+
+.task .objects.count-7 img {
+	max-width: 32px;
+	max-height: 32px;
+}
+
+.task .objects.count-7 img:nth-child(1) {
+	left: 17px;
+}
+
+.task .objects.count-7 img:nth-child(2) {
+	left: 51px;
+}
+
+.task .objects.count-7 img:nth-child(3) {
+	top: 34px;
+}
+
+.task .objects.count-7 img:nth-child(4) {
+	left: 34px;
+	top: 34px;
+}
+
+.task .objects.count-7 img:nth-child(5) {
+	left: 68px;
+	top: 34px;
+}
+
+.task .objects.count-7 img:nth-child(6) {
+	left: 17px;
+	top: 68px;
+}
+
+.task .objects.count-7 img:nth-child(7) {
+	left: 51px;
+	top: 68px;
+}
+
+// eight
+
+.task .objects.count-8 img {
+	max-width: 32px;
+	max-height: 32px;
+}
+
+.task .objects.count-8 img:nth-child(2) {
+	left: 34px;
+}
+
+.task .objects.count-8 img:nth-child(3) {
+	left: 68px;
+}
+
+.task .objects.count-8 img:nth-child(4) {
+	left: 17px;
+	top: 34px;
+}
+
+.task .objects.count-8 img:nth-child(5) {
+	left: 51px;
+	top: 34px;
+}
+
+.task .objects.count-8 img:nth-child(6) {
+	top: 68px;
+}
+
+.task .objects.count-8 img:nth-child(7) {
+	left: 34px;
+	top: 68px;
+}
+
+.task .objects.count-8 img:nth-child(8) {
+	left: 68px;
+	top: 68px;
+}
+
+// nine
+
+.task .objects.count-9 img {
+	max-width: 32px;
+	max-height: 32px;
+}
+
+.task .objects.count-9 img:nth-child(2) {
+	left: 34px;
+}
+
+.task .objects.count-9 img:nth-child(3) {
+	left: 68px;
+}
+
+.task .objects.count-9 img:nth-child(4) {
+	top: 34px;
+}
+
+.task .objects.count-9 img:nth-child(5) {
+	left: 34px;
+	top: 34px;
+}
+
+.task .objects.count-9 img:nth-child(6) {
+	left: 68px;
+	top: 34px;
+}
+
+.task .objects.count-9 img:nth-child(7) {
+	top: 68px;
+}
+
+.task .objects.count-9 img:nth-child(8) {
+	left: 34px;
+	top: 68px;
+}
+
+.task .objects.count-9 img:nth-child(9) {
+	left: 68px;
+	top: 68px;
+}

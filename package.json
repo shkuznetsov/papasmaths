@@ -6,24 +6,27 @@
 	"homepage": "http://papasmaths.kuznetsov.by",
 	"author": {
 		"name": "Alexander Kuznetsov",
+		"email": "alexander@kuznetsov.by",
 		"url": "http://kuznetsov.by/"
 	},
 	"engines": {
 		"node": ">=0.10.21"
 	},
 	"dependencies": {
-		"yargs": "1.2.1",
-		"gulp-concat": "~2.2.0",
-		"gulp-rename": "~1.2.0",
-		"gulp-uglify": "~0.2.1",
-		"gulp-sass": "~0.7.2",
-		"gulp-minify-css": "~0.3.4",
-		"gulp-gzip": "~0.0.5",
-		"gulp-replace": "~0.2.0",
+		"gulp": "~3.8",
 		"gulp-bump": "~0.1.6",
+		"gulp-concat": "~2.2.0",
 		"gulp-git": "~0.4.3",
+		"gulp-gzip": "~0.0.5",
+		"gulp-minify-css": "~0.3.4",
+		"gulp-minify-html": "^0.1.4",
+		"gulp-rename": "~1.2.0",
+		"gulp-replace": "~0.2.0",
 		"gulp-s3": "~0.3.0",
+		"gulp-sass": "~0.7.2",
+		"gulp-uglify": "~0.2.1",
+		"gulp-uglify-inline": "~0.0.1",
 		"gulp-util": "~2.2.11",
-		"gulp": "~3.8"
+		"yargs": "1.2.1"
 	}
 }

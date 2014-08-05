@@ -9,6 +9,10 @@ var
 	gzip = require('gulp-gzip'),
 	sass = require('gulp-sass'),
 	mincss = require('gulp-minify-css'),
+	minhtml = require('gulp-minify-html'),
+	uglifyhtml = require('gulp-uglify-inline'),
+	imagemin = require('gulp-imagemin'),
+	pngquant = require('imagemin-pngquant'),
 	replace = require('gulp-replace'),
 	bump = require('gulp-bump'),
 	git = require('gulp-git'),
@@ -18,32 +22,39 @@ var
 	options = {
 		paths: {
 			html: {
-				base: 'www/',
-				input: 'www/app.html',
-				output: 'index.html'
+				watch: 'src/**/*.html',
+				input: 'src/index.html',
+				output: {
+					min: 'dist/index.html',
+					gz: 'dist/index.html.gz'
+				}
 			},
 			css: {
-				base: 'www/css/',
-				input: 'www/css/main.scss',
+				watch: 'src/css/**/*.scss',
+				input: 'src/css/main.scss',
 				output: {
-					concat: 'build.css',
-					min: 'build.min.css',
-					gz: 'build.min.css.gz'
+					concat: 'dist/css/build.css',
+					min: 'dist/css/build.min.css',
+					gz: 'dist/css/build.min.css.gz'
 				}
 			},
 			js: {
-				base: 'www/js/',
+				watch: 'src/js/**/*.js',
 				input: [
-					'www/js/libs/zepto.js',
-					'www/js/libs/purl.js',
-					'www/js/task.js'
+					'src/js/libs/zepto.js',
+					'src/js/libs/purl.js',
+					'src/js/task.js'
 				],
 				output: {
-					concat: 'build.js',
-					min: 'build.min.js',
-					gz: 'build.min.js.gz'
+					concat: 'dist/js/build.js',
+					min: 'dist/js/build.min.js',
+					gz: 'dist/js/build.min.js.gz'
 				}
 			},
+			img: {
+				input: 'src/img/**',
+				output: 'dist/img/'
+			}
 		},
 		uglify: {
 			preserveComments: 'some',
@@ -65,15 +76,15 @@ var
 
 gulp.task('build-js', function()
 {
-    return gulp.src(options.paths.js.input)
+	return gulp.src(options.paths.js.input)
 		.pipe(concat(options.paths.js.output.concat))
-		.pipe(gulp.dest(options.paths.js.base))
+		.pipe(gulp.dest('./'))
 		.pipe(uglify(options.uglify))
 		.pipe(rename(options.paths.js.output.min))
-		.pipe(gulp.dest(options.paths.js.base))
+		.pipe(gulp.dest('./'))
 		.pipe(gzip())
 		.pipe(rename(options.paths.js.output.gz))
-		.pipe(gulp.dest(options.paths.js.base));
+		.pipe(gulp.dest('./'));
 });
 
 gulp.task('build-css', function()
@@ -81,32 +92,43 @@ gulp.task('build-css', function()
     return gulp.src(options.paths.css.input)
 		.pipe(sass())
 		.pipe(rename(options.paths.css.output.concat))
-		.pipe(gulp.dest(options.paths.css.base))
+		.pipe(gulp.dest('./'))
 		.pipe(mincss())
 		.pipe(rename(options.paths.css.output.min))
-		.pipe(gulp.dest(options.paths.css.base))
+		.pipe(gulp.dest('./'))
 		.pipe(gzip())
 		.pipe(rename(options.paths.css.output.gz))
-		.pipe(gulp.dest(options.paths.css.base));
+		.pipe(gulp.dest('./'));
 });
 
 gulp.task('build-html', function()
 {
 	return gulp.src(options.paths.html.input)
-		.pipe(replace(options.paths.js.output.concat, options.paths.js.output.min + '?version=' + pkg.version))
-		.pipe(replace(options.paths.css.output.concat, options.paths.css.output.min + '?version=' + pkg.version))
-		.pipe(rename(options.paths.html.output))
-		.pipe(gulp.dest(options.paths.html.base));
+		.pipe(replace('<% title %>', pkg.title))
+		.pipe(replace('<% description %>', pkg.description))
+		.pipe(replace('<% author %>', pkg.author.name + ', ' + pkg.author.email + ', ' + pkg.author.url))
+		.pipe(replace('<% version %>', pkg.version))
+		.pipe(minhtml(options.minhtml))
+		.pipe(uglifyhtml(options.uglify))
+		.pipe(rename(options.paths.html.output.min))
+		.pipe(gulp.dest('./'))
+		.pipe(gzip())
+		.pipe(rename(options.paths.html.output.gz))
+		.pipe(gulp.dest('./'));
+});
+
+gulp.task('build-img', function()
+{
+	return gulp.src(options.paths.img.input)
+		.pipe(imagemin({use: [pngquant({quality: '0-70'})]}))
+		.pipe(gulp.dest(options.paths.img.output));
 });
 
 gulp.task('build', ['build-js', 'build-css', 'build-html']);
 
 gulp.task('watch', function()
 {
-	var js = path.join(options.paths.js.base, '**', '*'),
-	    css = path.join(options.paths.css.base, '**', '*');
-
-	gulp.watch([js, css], ['build']);
+	gulp.watch([options.paths.js.watch, options.paths.css.watch, options.paths.html.watch], ['build']);
 });
 
 gulp.task('bump', function ( cb )
@@ -140,9 +162,9 @@ gulp.task('upload', ['build'], function ( )
 {
 	var src =
 	[
-		'www/**/*.gz',
-		'www/**/*.png',
-		'www/**/index.html'
+		'dist/**/*.gz',
+		'dist/**/*.png',
+		'dist/**/*.html'
 	];
 
 	var credentials = JSON.parse(fs.readFileSync('aws.json')),
@@ -150,5 +172,3 @@ gulp.task('upload', ['build'], function ( )
 
     return gulp.src(src).pipe(s3(credentials, opt));
 });
-
-gulp.task('release', ['build', 'bump', 'upload']);

@@ -5,7 +5,7 @@ var Task = function ( spec )
 
 Task.prototype.parse = function ( )
 {
-	var i, opPos, operators = [' ', '+', '-', '*', '/'];
+	var i, opPos, operators = [' ', '+', '-', '*', '/', '?'];
 
 	this.spec = this.spec.trim();
 
@@ -57,12 +57,26 @@ Task.prototype.build = function ( )
 		}
 	}
 
-	return $('<div>').attr('class', 'task')
-		.append(this.buildOperand(this.operands[0]))
-		.append(this.buildOperator(this.operator))
-		.append(this.buildOperand(this.operands[1]))
-		.append(this.buildOperator('='))
-		.append(this.buildAnswerCell());
+	var $task = $('<div>').attr('class', 'task');
+
+	if (this.operator == '?')
+	{
+		$task
+			.append(this.buildOperand(this.operands[0]))
+			.append(this.buildAnswerCell())
+			.append(this.buildOperand(this.operands[1]));
+	}
+	else
+	{
+		$task
+			.append(this.buildOperand(this.operands[0]))
+			.append(this.buildOperator(this.operator))
+			.append(this.buildOperand(this.operands[1]))
+			.append(this.buildOperator('='))
+			.append(this.buildAnswerCell());
+	}
+
+	return $task;
 };
 
 Task.prototype.buildOperand = function ( operand )
@@ -71,7 +85,7 @@ Task.prototype.buildOperand = function ( operand )
 
 	if (operand[0] == 'num')
 	{
-		$operand.text(operand[1]);
+		$operand.attr('class', 'text').text(operand[1]);
 	}
 	else
 	{
@@ -84,7 +98,7 @@ Task.prototype.buildOperand = function ( operand )
 
 		$operand.attr('class', 'objects count-' + operand[1]);
 
-		for (var i = 1; i <= operand[1]; ++i) $operand.append($('<div>').css('backgroundImage', 'url(objects/' + this.object + '.png)'));
+		for (var i = 1; i <= operand[1]; ++i) $operand.append($('<img>').attr('src', 'img/objects/' + this.object + '.png'));
 	}
 
 	return $operand;
@@ -94,7 +108,7 @@ Task.prototype.buildOperator = function ( operator )
 {
 	var char = operator == '-' ? '&minus;' : (operator == '*' ? '&times;' : operator);
 
-	return $('<div>').attr('class', 'operator').html(char);
+	return $('<div>').attr('class', 'text operator').html(char);
 };
 
 Task.prototype.buildAnswerCell = function ( )
