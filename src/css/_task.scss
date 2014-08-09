@@ -5,6 +5,10 @@
 	position: relative;
 }
 
+.task:nth-child(5n) {
+	page-break-after: always;
+}
+
 .task:hover {
 	background-color: #ffc;
 }
