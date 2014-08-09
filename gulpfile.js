@@ -26,6 +26,7 @@ var
 				watch: 'src/**/*.html',
 				input: 'src/index.html',
 				output: {
+					concat: 'dist/debug.html',
 					min: 'dist/index.html',
 					gz: 'dist/index.html.gz'
 				}
@@ -41,11 +42,7 @@ var
 			},
 			js: {
 				watch: 'src/js/**/*.js',
-				input: [
-					'src/js/libs/zepto.js',
-					'src/js/libs/purl.js',
-					'src/js/task.js'
-				],
+				input: 'src/js/**/*.js',
 				output: {
 					concat: 'dist/js/build.js',
 					min: 'dist/js/build.min.js',
@@ -110,6 +107,10 @@ gulp.task('build-html', function()
 		.pipe(replace('<% author %>', pkg.author.name + ', ' + pkg.author.email + ', ' + pkg.author.url))
 		.pipe(replace('<% version %>', pkg.version))
 		.pipe(replace('<% ga %>', config.ga))
+		.pipe(rename(options.paths.html.output.concat))
+		.pipe(gulp.dest('./'))
+		.pipe(replace('build.js', 'build.min.js'))
+		.pipe(replace('build.css', 'build.min.css'))
 		.pipe(minhtml(options.minhtml))
 		.pipe(uglifyhtml(options.uglify))
 		.pipe(rename(options.paths.html.output.min))

@@ -1,0 +1,171 @@
+.editor {
+	margin: 20px;
+	padding: 30px;
+	border-radius: 10px;
+	position: relative;
+	font-family: arial;
+	background-color: #ccf;
+}
+
+.editor:after {
+	content: " ";
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.editor .square {
+	float: left;
+	height: 104px;
+	width: 100px;
+	margin-right: 20px;
+}
+
+.editor .objects {
+	float: left;
+	position: relative;
+	width: 32px;
+	height: 24px;
+	margin: 0 1px 1px 0;
+}
+
+.editor .objects div {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -10px;
+	margin-left: -10px;
+	background-image: url(/img/objnums.png);
+}
+
+.editor .objects .cnt-1 {
+	background-position: 0 0;
+}
+
+.editor .objects .cnt-2 {
+	background-position: -20px 0;
+}
+
+.editor .objects .cnt-3 {
+	background-position: -40px 0;
+}
+
+.editor .objects .cnt-4 {
+	background-position: 0 -20px;
+}
+
+.editor .objects .cnt-5 {
+	background-position: -20px -20px;
+}
+
+.editor .objects .cnt-6 {
+	background-position: -40px -20px;
+}
+
+.editor .objects .cnt-7 {
+	background-position: 0 -40px;
+}
+
+.editor .objects .cnt-8 {
+	background-position: -20px -40px;
+}
+
+.editor .objects .cnt-9 {
+	background-position: -40px -40px;
+}
+
+.editor .objects.selected .cnt-1 {
+	background-position: -60px 0;
+}
+
+.editor .objects.selected .cnt-2 {
+	background-position: -80px 0;
+}
+
+.editor .objects.selected .cnt-3 {
+	background-position: -100px 0;
+}
+
+.editor .objects.selected .cnt-4 {
+	background-position: -60px -20px;
+}
+
+.editor .objects.selected .cnt-5 {
+	background-position: -80px -20px;
+}
+
+.editor .objects.selected .cnt-6 {
+	background-position: -100px -20px;
+}
+
+.editor .objects.selected .cnt-7 {
+	background-position: -60px -40px;
+}
+
+.editor .objects.selected .cnt-8 {
+	background-position: -80px -40px;
+}
+
+.editor .objects.selected .cnt-9 {
+	background-position: -100px -40px;
+}
+
+.editor .selector {
+	background-color: #eef;
+	cursor: pointer;
+}
+
+.editor .selector:hover {
+	background-color: #ccd;
+}
+
+.editor .selector.selected {
+	color: #fff;
+	background-color: #88a;
+	cursor: auto;
+}
+
+.editor .number {
+	display: block;
+	width: 98px;
+	height: 26px;
+	border: none;
+	font-face: arial;
+	font-size: 16px;
+	text-align: center;
+}
+
+.editor .operator div {
+	float: left;
+	width: 49px;
+	height: 34px;
+	margin: 0 1px 1px 0;
+	text-align: center;
+	line-height: 34px;
+	vertical-align: middle;
+	font-size: 20px;
+}
+
+.editor .operator div:last-child {
+	width: 99px;
+	height: 33px;
+}
+
+.editor div.controls {
+	position: absolute;
+	right: 12px;
+	top: 10px;
+}
+
+.editor div.controls div {
+	float: right;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.editor div.controls div.cancel {
+	color: #f00;
+}

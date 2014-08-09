@@ -1,2 +1,27 @@
+body {
+	font-family: arial;
+}
+
 @import 'task';
 @import 'error';
+@import 'editor';
+
+.big-button {
+	margin: 20px;
+	padding: 30px;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 24px;
+	background-color: #ccf;
+	cursor: pointer;
+}
+
+.red {
+	color: red;
+}
+
+@media print {
+	.noprint {
+		display: none !important;
+	}
+}

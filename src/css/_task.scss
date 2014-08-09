@@ -1,5 +1,12 @@
 .task {
-	margin: 50px;
+	margin: 20px;
+	padding: 30px;
+	border-radius: 10px;
+	position: relative;
+}
+
+.task:hover {
+	background-color: #ffc;
 }
 
 .task:after {
@@ -9,14 +16,34 @@
 	clear: both;
 }
 
-.task > div {
+.task div.controls {
+	position: absolute;
+	right: 12px;
+	top: 10px;
+	display: none;
+}
+
+.task:hover div.controls {
+	display: block;
+}
+
+.task div.controls div {
+	float: right;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.task > div.square {
 	float: left;
 	height: 100px;
 	width: 100px;
 }
 
 .task > div.text {
-	font-family: arial;
+	display: inline-block;
+	width: auto;
+	min-width: 100px;
 	font-size: 100px;
 	text-align: center;
 	line-height: 100px;
@@ -29,6 +56,11 @@
 .task > div.answer {
 	border: solid black 4px;
 	margin: -4px 10px 0 10px;
+}
+
+.task > div.answer.moreless {
+	margin-left: 50px;
+	margin-right: 50px;
 }
 
 .task > div.objects {

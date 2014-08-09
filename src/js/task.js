@@ -1,11 +1,17 @@
-var Task = function ( spec )
+var PapasTask = function ( spec )
 {
 	this.spec = spec;
 };
 
-Task.prototype.parse = function ( )
+PapasTask.OPERATORS = ['+', '-', '*', '/', '?'];
+PapasTask.OPERATOR_LABELS = ['+', '&minus;', '&times;', '/', '&lt;&gt;'];
+PapasTask.OBJECT_NUMS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+
+PapasTask.prototype.parse = function ( )
 {
-	var i, opPos, operators = [' ', '+', '-', '*', '/', '?'];
+	var i, opPos, operators = PapasTask.OPERATORS.slice(0);
+
+	operators.unshift(' ');
 
 	this.spec = this.spec.trim();
 
@@ -18,14 +24,10 @@ Task.prototype.parse = function ( )
 	if (!this.operator) throw 'Operator not found';
 
 	this.operands = [this.parseOperand(this.spec.substr(0, opPos)), this.parseOperand(this.spec.substr(opPos + 1))];
-
-	this.parsed = true;
 };
 
-Task.prototype.parseOperand = function ( operand )
+PapasTask.prototype.parseOperand = function ( operand )
 {
-	var objectNums = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
-
 	operand = operand.trim();
 
 	if (operand == parseInt(operand))
@@ -33,7 +35,7 @@ Task.prototype.parseOperand = function ( operand )
 		return ['num', parseInt(operand)];
 	}
 
-	for (var i in objectNums) if (operand == objectNums[i])
+	for (var i in PapasTask.OBJECT_NUMS) if (operand == PapasTask.OBJECT_NUMS[i])
 	{
 		return ['obj', ++i];
 	}
@@ -41,51 +43,104 @@ Task.prototype.parseOperand = function ( operand )
 	throw 'Operand "' + operand + '" wasn\'t recognised';
 };
 
-Task.prototype.build = function ( )
+PapasTask.prototype.build = function ( )
 {
-	if (!this.parsed)
+	try
 	{
-		try
+		this.parse();
+
+		if (!this.$element)
 		{
-			this.parse();
+			this.$element = $('<div>').attr('class', 'task');
 		}
-		catch (e)
+		else
 		{
-			return $('<div>').attr('class', 'error')
-				.append($('<div>').text("Erm, this is embarassing, but papa didn't understand this: " + this.spec))
-				.append($('<div>').text(e));
+			this.$element.empty();
 		}
+
+		if (this.operator == '?')
+		{
+			this.$element
+				.append(this.buildOperand(this.operands[0]))
+				.append(this.buildAnswerCell(true))
+				.append(this.buildOperand(this.operands[1]));
+		}
+		else
+		{
+			this.$element
+				.append(this.buildOperand(this.operands[0]))
+				.append(this.buildOperator(this.operator))
+				.append(this.buildOperand(this.operands[1]))
+				.append(this.buildOperator('='))
+				.append(this.buildAnswerCell());
+		}
+
+		this.$element.append(this.buildControls());
+	}
+	catch (e)
+	{
+		this.$element = $('<div>').attr('class', 'error noprint')
+			.append($('<div class="header">').text("Erm, this is embarassing, but papa didn't understand this: " + this.spec))
+			.append($('<div class="message">').text(e))
+			.append($('<div class="close red">').text('delete')
+				.on('click', this.onDeleteClicked.bind(this)));
 	}
 
-	var $task = $('<div>').attr('class', 'task');
+	return this.$element.fadeIn();
+};
 
-	if (this.operator == '?')
+PapasTask.prototype.buildControls = function ( )
+{
+	return $('<div>').attr('class', 'controls noprint')
+		.append($('<div>').attr('class', 'red').text('delete').click(this.onDeleteClicked.bind(this)))
+		.append($('<div>').text('edit').click(this.onEditClicked.bind(this)));
+
+};
+
+PapasTask.prototype.onDeleteClicked = function ( )
+{
+	this.removeElement(PapasSheet.deleteTask.bind(PapasSheet, this));
+};
+
+PapasTask.prototype.onEditClicked = function ( )
+{
+	this.$element.fadeOut(function ( )
 	{
-		$task
-			.append(this.buildOperand(this.operands[0]))
-			.append(this.buildAnswerCell())
-			.append(this.buildOperand(this.operands[1]));
+		if (!this.editor)
+		{
+			this.editor = new PapasEditor(this);
+
+			this.$element.after(this.editor.build());
+		}
+		else
+		{
+			this.editor.fadeIn();
+		}
+	}
+	.bind(this));
+};
+
+PapasTask.prototype.onEdited = function ( spec )
+{
+	if (spec)
+	{
+		this.spec = spec;
+
+		this.build().fadeIn(PapasSheet.rebuildUrl.bind(PapasSheet));
 	}
 	else
 	{
-		$task
-			.append(this.buildOperand(this.operands[0]))
-			.append(this.buildOperator(this.operator))
-			.append(this.buildOperand(this.operands[1]))
-			.append(this.buildOperator('='))
-			.append(this.buildAnswerCell());
+		this.$element.fadeIn();
 	}
-
-	return $task;
 };
 
-Task.prototype.buildOperand = function ( operand )
+PapasTask.prototype.buildOperand = function ( operand )
 {
 	var $operand = $('<div>');
 
 	if (operand[0] == 'num')
 	{
-		$operand.attr('class', 'text').text(operand[1]);
+		$operand.attr('class', 'square text').text(operand[1]);
 	}
 	else
 	{
@@ -96,7 +151,7 @@ Task.prototype.buildOperand = function ( operand )
 			if (this.object < 10) this.object = '0' + this.object;
 		}
 
-		$operand.attr('class', 'objects count-' + operand[1]);
+		$operand.attr('class', 'square objects count-' + operand[1]);
 
 		for (var i = 1; i <= operand[1]; ++i) $operand.append($('<img>').attr('src', 'img/objects/' + this.object + '.png'));
 	}
@@ -104,14 +159,31 @@ Task.prototype.buildOperand = function ( operand )
 	return $operand;
 };
 
-Task.prototype.buildOperator = function ( operator )
+PapasTask.prototype.buildOperator = function ( operator )
 {
 	var char = operator == '-' ? '&minus;' : (operator == '*' ? '&times;' : operator);
 
-	return $('<div>').attr('class', 'text operator').html(char);
+	return $('<div>').attr('class', 'square text operator').html(char);
 };
 
-Task.prototype.buildAnswerCell = function ( )
+PapasTask.prototype.buildAnswerCell = function ( moreless )
 {
-	return $('<div>').attr('class', 'answer');
+	return $('<div>').attr('class', 'square answer' + (moreless ? ' moreless' : ''));
+};
+
+PapasTask.prototype.removeElement = function ( cb )
+{
+	if (cb)
+	{
+		this.$element.fadeOut(function ( )
+		{
+			cb();
+
+			$(this).remove();
+		});
+	}
+	else
+	{
+		this.$element.remove();
+	}
 };
