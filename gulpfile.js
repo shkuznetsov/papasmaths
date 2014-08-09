@@ -136,7 +136,7 @@ gulp.task('watch', function()
 
 gulp.task('bump', function ( cb )
 {
-	var version = args['newver'];
+	var version = args['ver'];
 
 	if (typeof version != 'undefined')
 	{
