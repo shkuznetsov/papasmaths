@@ -2,6 +2,52 @@
 	page-break-after: always;
 }
 
+.task:nth-child(5n+6) {
+	margin-top: 40px;
+}
+
+@media print {
+	.task:nth-child(5n+6) {
+		margin-top: 20px;
+	}
+}
+
+.task .pagebreak {
+	display: none;
+	width: 100px;
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	bottom: 100%;
+	margin-left: -50px;
+	margin-bottom: 12px;
+}
+
+.task .pagebreak:before,
+.task .pagebreak:after {
+	top: 7px;
+	height: 5px;
+	border-top-style: dotted;
+	border-bottom-style: dotted;
+	content: ' ';
+	width: 1000px;
+	position: absolute;
+	border-width: 1px;
+	border-color: #bbb;
+}
+
+.task .pagebreak:before {
+	right: 100%;
+}
+
+.task .pagebreak:after {
+	left: 100%;
+}
+
+.task:nth-child(5n+6) .pagebreak {
+	display: block;
+}
+
 .task:hover {
 	background-color: $box-background-task;
 }

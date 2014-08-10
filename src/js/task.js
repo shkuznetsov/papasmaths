@@ -75,7 +75,7 @@ PapasTask.prototype.build = function ( )
 				.append(this.buildAnswerCell());
 		}
 
-		this.$element.append(this.buildControls());
+		this.$element.append(this.buildControls()).append(this.buildPageBreak());
 	}
 	catch (e)
 	{
@@ -95,6 +95,11 @@ PapasTask.prototype.buildControls = function ( )
 		.append($('<div>').attr('class', 'red').text('delete').click(this.onDeleteClicked.bind(this)))
 		.append($('<div>').text('edit').click(this.onEditClicked.bind(this)));
 
+};
+
+PapasTask.prototype.buildPageBreak = function ( )
+{
+	return $('<div>').attr('class', 'pagebreak noprint').text('Page break');
 };
 
 PapasTask.prototype.onDeleteClicked = function ( )
