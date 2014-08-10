@@ -1,41 +1,17 @@
-.task {
-	margin: 20px;
-	padding: 30px;
-	border-radius: 10px;
-	position: relative;
-}
-
 .task:nth-child(5n) {
 	page-break-after: always;
 }
 
 .task:hover {
-	background-color: #ffc;
-}
-
-.task:after {
-	content: " ";
-	display: block;
-	height: 0;
-	clear: both;
+	background-color: $box-background-task;
 }
 
 .task div.controls {
-	position: absolute;
-	right: 12px;
-	top: 10px;
 	display: none;
 }
 
 .task:hover div.controls {
 	display: block;
-}
-
-.task div.controls div {
-	float: right;
-	text-decoration: underline;
-	cursor: pointer;
-	margin-left: 10px;
 }
 
 .task > div.square {

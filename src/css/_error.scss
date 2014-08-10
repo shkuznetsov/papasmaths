@@ -1,10 +1,5 @@
 .error {
-	position: relative;
-	margin: 20px;
-	padding: 30px;
-	border-radius: 10px;
-	background-color: #fcc;
-	font-family: arial;
+	background-color: $box-background-error;
 }
 
 .error div.header {
@@ -16,12 +11,4 @@
 .error div.message {
 	font-size: 20px;
 	margin-top: 10px;
-}
-
-.error div.close {
-	position: absolute;
-	right: 12px;
-	top: 10px;
-	text-decoration: underline;
-	cursor: pointer;
 }

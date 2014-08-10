@@ -1,0 +1,22 @@
+.box {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+	margin: 20px;
+	padding: 30px;
+	position: relative;
+}
+
+.box:after {
+	content: " ";
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+// Background colors
+$box-background-error: #fcc;
+$box-background-editor: #ccf;
+$box-background-task: #ffc;
+$box-background-add: #cfc;

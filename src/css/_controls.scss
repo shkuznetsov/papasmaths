@@ -1,0 +1,16 @@
+.box .controls {
+	position: absolute;
+	right: 12px;
+	top: 10px;
+}
+
+.box .controls div {
+	float: right;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.box .controls div.red {
+	color: red;
+}

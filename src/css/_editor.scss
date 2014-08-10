@@ -1,17 +1,5 @@
 .editor {
-	margin: 20px;
-	padding: 30px;
-	border-radius: 10px;
-	position: relative;
-	font-family: arial;
-	background-color: #ccf;
-}
-
-.editor:after {
-	content: " ";
-	display: block;
-	height: 0;
-	clear: both;
+	background-color: $box-background-editor;
 }
 
 .editor .square {
@@ -151,21 +139,4 @@
 .editor .operator div:last-child {
 	width: 99px;
 	height: 33px;
-}
-
-.editor div.controls {
-	position: absolute;
-	right: 12px;
-	top: 10px;
-}
-
-.editor div.controls div {
-	float: right;
-	text-decoration: underline;
-	cursor: pointer;
-	margin-left: 10px;
-}
-
-.editor div.controls div.cancel {
-	color: #f00;
 }

@@ -16,7 +16,7 @@ var PapasEditor = function ( task )
 
 PapasEditor.prototype.build = function ( )
 {
-	this.$element = $('<div>').attr('class', 'editor')
+	this.$element = $('<div>').attr('class', 'box editor')
 		.append(this.buildOperand(0))
 		.append(this.buildOperator())
 		.append(this.buildOperand(1))
