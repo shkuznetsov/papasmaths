@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "name": "papas-maths",
   "title": "Papa's Maths",
   "description": "Pre-school maths worksheet generator",
@@ -29,8 +29,8 @@
     "gulp-sass": "~0.7.2",
     "gulp-uglify": "~0.2.1",
     "gulp-uglify-inline": "~0.1.0",
-	"gulp-imagemin": "~0.6.2",
-	"imagemin-pngquant": "~0.1.3",
+    "gulp-imagemin": "~0.6.2",
+    "imagemin-pngquant": "~0.1.3",
     "gulp-gm": "~0.0.6"
   }
 }
