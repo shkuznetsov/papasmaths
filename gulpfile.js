@@ -128,7 +128,7 @@ gulp.task('build-img', function()
 
 	return gulp.src(options.paths.img.input)
 		.pipe(objects_filter)
-		.pipe(gm(function ( gmfile ) { return gmfile.resize(100, 100).background('transparent').gravity('Center').extent(100, 100); }))
+		.pipe(gm(function ( gmfile ) { return gmfile.resize(160, 160).background('transparent').gravity('Center').extent(160, 160); }))
 		.pipe(objects_filter.restore())
 		.pipe(imagemin({use: [pngquant({quality: '0-70'})]}))
 		.pipe(gulp.dest(options.paths.img.output));
