@@ -151,7 +151,7 @@ PapasTask.prototype.buildOperand = function ( operand )
 	{
 		if (!this.object)
 		{
-			this.object = Math.ceil(Math.random() * 50) || 1;
+			this.object = Math.ceil(Math.random() * 60) || 1;
 
 			if (this.object < 10) this.object = '0' + this.object;
 		}
