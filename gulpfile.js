@@ -5,6 +5,7 @@ var
 	gutil = require('gulp-util'),
 	concat = require('gulp-concat'),
 	rename = require('gulp-rename'),
+	filter = require('gulp-filter'),
 	uglify = require('gulp-uglify'),
 	gzip = require('gulp-gzip'),
 	sass = require('gulp-sass'),
@@ -13,6 +14,7 @@ var
 	uglifyhtml = require('gulp-uglify-inline'),
 	imagemin = require('gulp-imagemin'),
 	pngquant = require('imagemin-pngquant'),
+	gm = require('gulp-gm'),
 	replace = require('gulp-replace'),
 	bump = require('gulp-bump'),
 	git = require('gulp-git'),
@@ -122,7 +124,12 @@ gulp.task('build-html', function()
 
 gulp.task('build-img', function()
 {
+	var objects_filter = filter('**/objects/*');
+
 	return gulp.src(options.paths.img.input)
+		.pipe(objects_filter)
+		.pipe(gm(function ( gmfile ) { return gmfile.resize(100, 100).background('transparent').gravity('Center').extent(100, 100); }))
+		.pipe(objects_filter.restore())
 		.pipe(imagemin({use: [pngquant({quality: '0-70'})]}))
 		.pipe(gulp.dest(options.paths.img.output));
 });
