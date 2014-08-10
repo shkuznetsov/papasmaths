@@ -6,6 +6,8 @@ var PapasSheet =
 
 	init: function ( )
 	{
+		$.fx.speeds._default = 100;
+
 		this.$tasks_container = $('#tasks-container');
 		this.parseUrl();
 		this.registerHashListener();
