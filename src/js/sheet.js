@@ -55,11 +55,22 @@ var PapasSheet =
 			this.$add_new_button.before((new PapasEditor()).build());
 		}
 		.bind(this));
+
+		PapasTrack.taskAddInitiated();
 	},
 
 	onAddNewDone: function ( spec )
 	{
-		if (spec) this.appendTask(spec);
+		if (spec)
+		{
+			this.appendTask(spec);
+
+			PapasTrack.taskAddFinalised(spec);
+		}
+		else
+		{
+			PapasTrack.taskAddCanceled();
+		}
 
 		this.$add_new_button.fadeIn(this.rebuildUrl.bind(this));
 	},

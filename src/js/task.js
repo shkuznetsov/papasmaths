@@ -105,6 +105,8 @@ PapasTask.prototype.buildPageBreak = function ( )
 PapasTask.prototype.onDeleteClicked = function ( )
 {
 	this.removeElement(PapasSheet.deleteTask.bind(PapasSheet, this));
+
+	PapasTrack.taskDeleted();
 };
 
 PapasTask.prototype.onEditClicked = function ( )
@@ -123,6 +125,8 @@ PapasTask.prototype.onEditClicked = function ( )
 		}
 	}
 	.bind(this));
+
+	PapasTrack.taskEditInitiated();
 };
 
 PapasTask.prototype.onEdited = function ( spec )
@@ -132,10 +136,14 @@ PapasTask.prototype.onEdited = function ( spec )
 		this.spec = spec;
 
 		this.build().fadeIn(PapasSheet.rebuildUrl.bind(PapasSheet));
+
+		PapasTrack.taskEditFinalised(spec);
 	}
 	else
 	{
 		this.$element.fadeIn();
+
+		PapasTrack.taskEditCanceled();
 	}
 };
 
