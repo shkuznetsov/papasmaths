@@ -2,13 +2,12 @@
 	background-color: $box-background-error;
 }
 
-.error div.header {
-	font-size: 26px;
-	font-weight: bold;
-	margin-top: 0;
+.error h1 {
+	margin: 0;
+	font-size: 140%;
 }
 
-.error div.message {
-	font-size: 20px;
-	margin-top: 10px;
+.error h2 {
+	margin: 0;
+	font-size: 70%;
 }

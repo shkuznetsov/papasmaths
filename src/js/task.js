@@ -51,7 +51,7 @@ PapasTask.prototype.build = function ( )
 
 		if (!this.$element)
 		{
-			this.$element = $('<div>').attr('class', 'box task');
+			this.$element = $('<div>').attr('class', 'box task').click(this.onEditClicked.bind(this));
 		}
 		else
 		{
@@ -80,10 +80,10 @@ PapasTask.prototype.build = function ( )
 	catch (e)
 	{
 		this.$element = $('<div>').attr('class', 'box error noprint')
-			.append($('<div class="header">').text("Erm, this is embarassing, but papa didn't understand this: " + this.spec))
-			.append($('<div class="message">').text(e))
+			.append($('<h1>').text("Erm, this is embarassing, but papa didn't understand this: " + this.spec))
+			.append($('<h2>').text(e))
 			.append($('<div>').attr('class', 'controls noprint')
-				.append($('<div>').attr('class', 'red').text('delete')
+				.append($('<div>').attr('class', 'red').text('Delete')
 					.on('click', this.onDeleteClicked.bind(this))));
 	}
 
@@ -93,8 +93,8 @@ PapasTask.prototype.build = function ( )
 PapasTask.prototype.buildControls = function ( )
 {
 	return $('<div>').attr('class', 'controls noprint')
-		.append($('<div>').attr('class', 'red').text('delete').click(this.onDeleteClicked.bind(this)))
-		.append($('<div>').text('edit').click(this.onEditClicked.bind(this)));
+		.append($('<div>').attr('class', 'red').text('Delete').click(this.onDeleteClicked.bind(this)))
+		.append($('<div>').text('Edit').click(this.onEditClicked.bind(this)));
 
 };
 

@@ -1,3 +1,11 @@
+.task {
+	cursor: pointer;
+}
+
+.task:hover {
+	background-color: $box-background-task;
+}
+
 .task:nth-child(5n+6) {
 	margin-top: 40px;
 }
@@ -46,10 +54,6 @@
 
 .task:nth-child(5n+6) {
 	page-break-before: always;
-}
-
-.task:hover {
-	background-color: $box-background-task;
 }
 
 .task div.controls {

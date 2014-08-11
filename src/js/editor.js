@@ -72,12 +72,12 @@ PapasEditor.prototype.buildOperator = function ( )
 
 PapasEditor.prototype.buildControls = function ( )
 {
-	this.$save = $('<div>').text('save').on('click', this.done.bind(this, true));
+	this.$save = $('<div>').text('Save').on('click', this.done.bind(this, true));
 
 	if (!this.isSpecReady()) this.$save.hide();
 
 	return $('<div>').attr('class', 'controls')
-		.append($('<div>').attr('class', 'red').text('cancel').on('click', this.done.bind(this, false)))
+		.append($('<div>').text('Cancel').on('click', this.done.bind(this, false)))
 		.append(this.$save);
 };
 

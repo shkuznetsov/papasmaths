@@ -4,18 +4,22 @@
 }
 
 .editor .square {
+	-webkit-border-radius: $box-border-radius / 2;
+	-moz-border-radius: $box-border-radius / 2;
+	-ms-border-radius: $box-border-radius / 2;
+	border-radius: $box-border-radius / 2;
+	overflow: hidden;
 	float: left;
 	height: 104px;
-	width: 100px;
-	margin-right: 20px;
+	width: 78px;
+	margin-right: $box-padding;
 }
 
 .editor .objects {
 	float: left;
 	position: relative;
-	width: 32px;
-	height: 24px;
-	margin: 0 1px 1px 0;
+	width: 26px;
+	height: 26px;
 }
 
 .editor .objects div {
@@ -112,25 +116,24 @@
 
 .editor .selector.selected {
 	color: #fff;
-	background-color: #88a;
+	background-color: #000;
 	cursor: auto;
 }
 
 .editor .number {
 	display: block;
-	width: 98px;
-	height: 26px;
+	width: 100%;
+	height: 25px;
 	border: none;
-	font-face: arial;
 	font-size: 16px;
 	text-align: center;
 }
 
 .editor .operator div {
 	float: left;
-	width: 49px;
-	height: 34px;
-	margin: 0 1px 1px 0;
+	width: 39px;
+	height: 35px;
+	//margin: 0 1px 1px 0;
 	text-align: center;
 	line-height: 34px;
 	vertical-align: middle;
@@ -138,6 +141,6 @@
 }
 
 .editor .operator div:last-child {
-	width: 99px;
-	height: 33px;
+	width: 100%;
+	height: 35px;
 }

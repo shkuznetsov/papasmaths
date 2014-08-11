@@ -1,10 +1,22 @@
+// Geometry
+$box-margin: 20px;
+$box-padding: 30px;
+$box-border-radius: 10px;
+
+// Background colors
+$box-background-header: #cc9;
+$box-background-error: #fcc;
+$box-background-editor: #99c;
+$box-background-task: #ff9;
+$box-background-add: #6c6;
+
 .box {
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	-ms-border-radius: 10px;
-	border-radius: 10px;
-	margin: 20px;
-	padding: 30px;
+	-webkit-border-radius: $box-border-radius;
+	-moz-border-radius: $box-border-radius;
+	-ms-border-radius: $box-border-radius;
+	border-radius: $box-border-radius;
+	margin: $box-margin;
+	padding: $box-padding;
 	position: relative;
 }
 
@@ -15,9 +27,38 @@
 	clear: both;
 }
 
-// Background colors
-$box-background-header: #fc9;
-$box-background-error: #fcc;
-$box-background-editor: #ccf;
-$box-background-task: #ffc;
-$box-background-add: #6c6;
+// Controls
+
+.box .controls {
+	position: absolute;
+	right: $box-padding / 2;
+	top: $box-padding / 2;
+}
+
+.box .controls div {
+	float: right;
+	-webkit-border-radius: $box-border-radius / 2;
+	-moz-border-radius: $box-border-radius / 2;
+	-ms-border-radius: $box-border-radius / 2;
+	border-radius: $box-border-radius / 2;
+	border: 1px dashed #000;
+	cursor: pointer;
+	padding: 4px 8px;
+	font-size: 90%;
+	margin-left: 10px;
+}
+
+.box .controls div:hover {
+	background-color: #000;
+	color: #fff;
+}
+
+.box .controls div.red {
+	color: red;
+	border-color: red;
+}
+
+.box .controls div.red:hover {
+	color: #fff;
+	background-color: red;
+}
