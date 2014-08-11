@@ -51,7 +51,7 @@ PapasTask.prototype.build = function ( )
 
 		if (!this.$element)
 		{
-			this.$element = $('<div>').attr('class', 'box task').click(this.onEditClicked.bind(this));
+			this.$element = $('<div>').attr('class', 'box task');
 		}
 		else
 		{
