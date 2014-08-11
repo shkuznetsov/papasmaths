@@ -122,8 +122,10 @@ PapasTask.prototype.onEditClicked = function ( )
 		}
 		else
 		{
-			this.editor.fadeIn();
+			this.$element.after(this.editor.fadeIn());
 		}
+
+		this.$element.detach();
 	}
 	.bind(this));
 
@@ -146,6 +148,8 @@ PapasTask.prototype.onEdited = function ( spec )
 
 		PapasTrack.taskEditCanceled();
 	}
+
+	return this.$element;
 };
 
 PapasTask.prototype.buildOperand = function ( operand )

@@ -139,7 +139,9 @@ PapasEditor.prototype.done = function ( save )
 	{
 		if (this.task)
 		{
-			this.task.onEdited(save ? this.toSpec() : false);
+			this.$element
+				.after(this.task.onEdited(save ? this.toSpec() : false))
+				.detach();
 		}
 		else
 		{
@@ -156,5 +158,5 @@ PapasEditor.prototype.toSpec = function ( )
 
 PapasEditor.prototype.fadeIn = function ( )
 {
-	this.$element.fadeIn();
+	return this.$element.fadeIn();
 };
