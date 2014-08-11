@@ -82,8 +82,9 @@ PapasTask.prototype.build = function ( )
 		this.$element = $('<div>').attr('class', 'box error noprint')
 			.append($('<div class="header">').text("Erm, this is embarassing, but papa didn't understand this: " + this.spec))
 			.append($('<div class="message">').text(e))
-			.append($('<div class="close red">').text('delete')
-				.on('click', this.onDeleteClicked.bind(this)));
+			.append($('<div>').attr('class', 'controls noprint')
+				.append($('<div>').attr('class', 'red').text('delete')
+					.on('click', this.onDeleteClicked.bind(this))));
 	}
 
 	return this.$element.fadeIn();
