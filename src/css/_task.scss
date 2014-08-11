@@ -1,7 +1,3 @@
-.task:nth-child(5n) {
-	page-break-after: always;
-}
-
 .task:nth-child(5n+6) {
 	margin-top: 40px;
 }
@@ -46,6 +42,10 @@
 
 .task:nth-child(5n+6) .pagebreak {
 	display: block;
+}
+
+.task:nth-child(5n+6) {
+	page-break-before: always;
 }
 
 .task:hover {
