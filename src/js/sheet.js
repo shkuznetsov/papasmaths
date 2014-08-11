@@ -13,6 +13,7 @@ var PapasSheet =
 		this.registerHashListener();
 
 		this.$add_new_button = $('#add-new-button').on('click', this.onAddNewClicked.bind(this));
+		this.$print_button = $('#print-button').on('click', this.onPrintClicked.bind(this));
 	},
 
 	registerHashListener: function ( )
@@ -46,6 +47,13 @@ var PapasSheet =
 				this.appendTask(specs[i]);
 			}
 		}
+	},
+
+	onPrintClicked: function ( )
+	{
+		window.print();
+
+		PapasTrack.sheetPrintClicked();
 	},
 
 	onAddNewClicked: function ( )

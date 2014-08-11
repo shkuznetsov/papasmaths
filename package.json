@@ -9,6 +9,10 @@
     "email": "alexander@kuznetsov.by",
     "url": "http://kuznetsov.by/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shkuznetsov/papasmaths.git"
+  },
   "engines": {
     "node": ">=0.10.21"
   },

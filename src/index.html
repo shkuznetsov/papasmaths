@@ -11,6 +11,18 @@
 	<link rel="stylesheet" type="text/css" href="css/build.css?v=<% version %>">
 </head>
 <body>
+
+<div class="box header noprint">
+	<div class="title">
+		<h1><% title %><sup><a href="<% repo %>">v<% version %></a></sup></h1>
+		<h2><% description %></h2>
+	</div>
+	<div class="menu">
+		<div id="print-button" class="button">Print the sheet below</div>
+		<!--a class="button" href="#">Go to library</a-->
+	</div>
+</div>
+
 <div id="tasks-container"></div>
 <div id="add-new-button" class="box big-button noprint">+ Add a new task</div>
 <script>

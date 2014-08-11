@@ -41,6 +41,11 @@ var PapasTrack =
 		}
 	},
 
+	sheetPrintClicked: function ( )
+	{
+		ga('send', 'event', 'Sheet', 'Print Clicked');
+	},
+
 	taskAddInitiated: function ( )
 	{
 		ga('send', 'event', 'Task', 'Add Initiated');

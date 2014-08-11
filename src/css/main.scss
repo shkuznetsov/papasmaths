@@ -4,16 +4,22 @@ body {
 }
 
 @import 'box';
+@import 'header';
 @import 'task';
 @import 'error';
 @import 'editor';
 @import 'controls';
 
 .big-button {
-	background-color: $box-background-add;
+	border: dashed $box-background-add 1px;
 	text-align: center;
 	font-size: 24px;
 	cursor: pointer;
+}
+
+.big-button:hover {
+	background-color: $box-background-add;
+	color: #fff;
 }
 
 @media print {

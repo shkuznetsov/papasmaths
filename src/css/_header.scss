@@ -1,0 +1,55 @@
+.header {
+	background-color: $box-background-header;
+	padding-bottom: 20px;
+}
+
+.header .title {
+	float: left;
+	margin-bottom: 10px;
+}
+
+.header h1 {
+	margin: 0;
+	font-size: 140%;
+}
+
+.header h1 sup {
+	position: relative;
+	top: -4px;
+	left: 4px;
+	font-size: 50%;
+}
+
+.header h2 {
+	margin: 0;
+	font-size: 70%;
+}
+
+.header .controls {
+	font-size: 70%;
+}
+
+.header .menu {
+	float: right;
+}
+
+.header .menu .button {
+	display: block;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+	border: dashed #f96 1px;
+	float: right;
+	padding: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.header .menu .button:hover {
+	background-color: #f96;
+	color: #fff;
+}
