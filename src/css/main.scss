@@ -10,6 +10,7 @@ body {
 @import 'editor';
 
 .big-button {
+	margin: $box-margin ($box-margin + $box-padding / 2);
 	border: dashed $box-background-add 1px;
 	text-align: center;
 	font-size: 24px;

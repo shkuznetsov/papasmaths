@@ -1,6 +1,6 @@
 .header {
 	background-color: $box-background-header;
-	padding: $box-margin ($box-margin + $box-padding / 2) ($box-margin - $box-padding / 2) ($box-margin + $box-padding);
+	padding: $box-margin ($box-margin + $box-padding / 2) ($box-margin - $box-padding / 2) ($box-margin + $box-padding / 2);
 }
 
 .header:after {
