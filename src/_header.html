@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title><%= pkg.title %></title>
+	<meta name="description" content="<%= pkg.description %>">
+	<meta name="version" content="<%= pkg.version %>">
+	<meta name="author" content="<%= pkg.author.name %>, <%= pkg.author.email %>, <%= pkg.author.url %>">
+	<meta property="og:image" content="/img/fb.png">
+	<script src="js/build.js?v=<%= pkg.version %>"></script>
+	<link rel="stylesheet" type="text/css" href="css/build.css?v=<%= pkg.version %>">
+</head>
+<body>
+
+<div class="header noprint">
+	<div class="title">
+		<h1><%= pkg.title %><sup><a href="<%= pkg.repository.url %>">v<%= pkg.version %></a></sup></h1>
+		<h2><%= pkg.description %></h2>
+	</div>
+	<div class="menu">

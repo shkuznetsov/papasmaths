@@ -16,6 +16,8 @@ var
 	pngquant = require('imagemin-pngquant'),
 	gm = require('gulp-gm'),
 	replace = require('gulp-replace'),
+	template = require('gulp-template'),
+	include = require('gulp-include'),
 	bump = require('gulp-bump'),
 	git = require('gulp-git'),
 	s3 = require('gulp-s3'),
@@ -74,7 +76,7 @@ var
 		}
 	};
 
-gulp.task('build-js', function()
+gulp.task('build-js', function ( )
 {
 	return gulp.src(options.paths.js.input)
 		.pipe(concat(options.paths.js.output.concat))
@@ -87,7 +89,7 @@ gulp.task('build-js', function()
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('build-css', function()
+gulp.task('build-css', function ( )
 {
     return gulp.src(options.paths.css.input)
 		.pipe(sass())
@@ -101,19 +103,15 @@ gulp.task('build-css', function()
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('build-html', function()
+gulp.task('build-html', function ( )
 {
 	return gulp.src(options.paths.html.input)
-		.pipe(replace('<% title %>', pkg.title))
-		.pipe(replace('<% description %>', pkg.description))
-		.pipe(replace('<% author %>', pkg.author.name + ', ' + pkg.author.email + ', ' + pkg.author.url))
-		.pipe(replace('<% version %>', pkg.version))
-		.pipe(replace('<% repo %>', pkg.repository.url))
-		.pipe(replace('<% ga %>', config.ga))
+		.pipe(include())
+		.pipe(template({pkg: pkg, config: config}))
 		.pipe(rename(options.paths.html.output.concat))
 		.pipe(gulp.dest('./'))
-		.pipe(replace('build.js', 'build.min.js'))
-		.pipe(replace('build.css', 'build.min.css'))
+		.pipe(replace(path.basename(options.paths.js.output.concat), path.basename(options.paths.js.output.min)))
+		.pipe(replace(path.basename(options.paths.css.output.concat), path.basename(options.paths.css.output.min)))
 		.pipe(minhtml(options.minhtml))
 		.pipe(uglifyhtml(options.uglify))
 		.pipe(rename(options.paths.html.output.min))
@@ -123,7 +121,7 @@ gulp.task('build-html', function()
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('build-img', function()
+gulp.task('build-img', function ( )
 {
 	var objects_filter = filter('**/objects/*');
 
@@ -137,7 +135,7 @@ gulp.task('build-img', function()
 
 gulp.task('build', ['build-js', 'build-css', 'build-html']);
 
-gulp.task('watch', function()
+gulp.task('watch', ['build'], function ( )
 {
 	gulp.watch([options.paths.js.watch, options.paths.css.watch, options.paths.html.watch], ['build']);
 });

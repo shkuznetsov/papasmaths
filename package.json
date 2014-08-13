@@ -17,24 +17,26 @@
     "node": ">=0.10.21"
   },
   "devDependencies": {
-    "yargs": "~1.2.1",
     "gulp": "~3.8",
-    "gulp-util": "~2.2.11",
-    "gulp-filter": "~1.0.0",
     "gulp-bump": "~0.1.6",
     "gulp-concat": "~2.2.0",
+    "gulp-filter": "~1.0.0",
     "gulp-git": "~0.4.3",
+    "gulp-gm": "~0.0.6",
     "gulp-gzip": "~0.0.5",
+    "gulp-imagemin": "~0.6.2",
     "gulp-minify-css": "~0.3.4",
     "gulp-minify-html": "~0.1.4",
     "gulp-rename": "~1.2.0",
-    "gulp-replace": "~0.2.0",
     "gulp-s3": "~0.3.0",
     "gulp-sass": "~0.7.2",
+    "gulp-template": "~1.0.0",
+    "gulp-replace": "~0.4.0",
+    "gulp-include": "~1.0.0",
     "gulp-uglify": "~0.2.1",
     "gulp-uglify-inline": "~0.1.0",
-    "gulp-imagemin": "~0.6.2",
+    "gulp-util": "~2.2.11",
     "imagemin-pngquant": "~0.1.3",
-    "gulp-gm": "~0.0.6"
+    "yargs": "~1.2.1"
   }
 }

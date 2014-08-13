@@ -1,27 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title><% title %></title>
-	<meta name="description" content="<% description %>">
-	<meta name="version" content="<% version %>">
-	<meta name="author" content="<% author %>">
-	<meta property="og:image" content="/img/fb.png">
-	<script src="js/build.js?v=<% version %>"></script>
-	<link rel="stylesheet" type="text/css" href="css/build.css?v=<% version %>">
-</head>
-<body>
+//= include _header.html
 
-<div class="header noprint">
-	<div class="title">
-		<h1><% title %><sup><a href="<% repo %>">v<% version %></a></sup></h1>
-		<h2><% description %></h2>
-	</div>
-	<div class="menu">
 		<div id="print-button" class="button">Print out the sheet below</div>
-		<!--a class="button" href="#">Go to library</a>
-		<a class="button" href="#">About</a>
-		<a class="button" href="#">Go to library</a-->
 	</div>
 </div>
 
@@ -32,7 +11,7 @@
 $(function()
 {
 	PapasSheet.init();
-	PapasTrack.init('<% ga %>');
+	PapasTrack.init('<%= config.ga %>');
 });
 
 </script>
