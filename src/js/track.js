@@ -10,11 +10,9 @@ var PapasTrack =
 
 		ga('create', tracking_id, 'auto');
 		ga('send', 'pageview');
-
-		this.bindPrintEvents();
 	},
 
-	bindPrintEvents: function ( )
+	bindPrintHandler: function ( )
 	{
 		if (window.matchMedia)
 		{

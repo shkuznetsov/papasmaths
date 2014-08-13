@@ -14,6 +14,8 @@ var PapasSheet =
 
 		this.$add_new_button = $('#add-new-button').on('click', this.onAddNewClicked.bind(this));
 		this.$print_button = $('#print-button').on('click', this.onPrintClicked.bind(this));
+
+		PapasTrack.bindPrintHandler();
 	},
 
 	registerHashListener: function ( )

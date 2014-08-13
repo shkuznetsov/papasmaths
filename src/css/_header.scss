@@ -15,6 +15,12 @@
 	box-shadow: 0px 0px 16px 0px rgba(50, 50, 50, 0.75);
 }
 
+.header.shadow {
+	position: relative;
+	z-index: 99;
+	opacity: 0;
+}
+
 .header:after {
 	content: " ";
 	display: block;
