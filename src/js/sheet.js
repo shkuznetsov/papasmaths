@@ -6,7 +6,7 @@ var PapasSheet =
 
 	init: function ( )
 	{
-		$.fx.speeds._default = 100;
+		$.fx.speeds._default = 150;
 
 		this.$tasks_container = $('#tasks-container');
 		this.parseUrl();
