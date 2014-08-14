@@ -12,12 +12,15 @@ var PapasSheet =
 	{
 		$.fx.speeds._default = 150;
 
-		this.$pages_container = $('#pages-container');
-		this.parseUrl();
-		this.registerHashListener();
-
 		this.$add_new_button = $('#add-new-button').on('click', this.onAddNewClicked.bind(this));
-		this.$print_button = $('#print-button').on('click', this.onPrintClicked.bind(this));
+		this.$print_button = $('#print-button').hide().on('click', this.onPrintClicked.bind(this));
+		this.$pages_container = $('#pages-container');
+
+		this.parseUrl();
+
+		this.togglePrintButton();
+
+		this.registerHashListener();
 
 		PapasTrack.bindPrintHandler();
 	},
@@ -56,7 +59,15 @@ var PapasSheet =
 			}
 
 			this.arrangeTaskByPages();
+
+			this.togglePrintButton();
 		}
+	},
+
+	togglePrintButton: function ( )
+	{
+		if (this.tasks.length) this.$print_button.fadeIn();
+		else this.$print_button.fadeOut();
 	},
 
 	onPrintClicked: function ( )
@@ -85,6 +96,8 @@ var PapasSheet =
 
 			this.arrangeTaskByPages();
 
+			this.togglePrintButton();
+
 			PapasTrack.taskAddFinalised(spec);
 		}
 		else
@@ -106,11 +119,13 @@ var PapasSheet =
 
 		if (i != -1)
 		{
-			delete this.tasks[i];
+			this.tasks.splice(i, 1);
 
 			this.rebuildUrl();
 
 			this.arrangeTaskByPages();
+
+			this.togglePrintButton();
 		}
 	},
 
