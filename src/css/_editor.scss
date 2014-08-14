@@ -1,6 +1,6 @@
 .editor {
 	background-color: $box-background-editor;
-	padding: 29px;
+	padding: 28px $box-padding;
 }
 
 .editor .square {
@@ -9,7 +9,7 @@
 	-ms-border-radius: $box-border-radius / 2;
 	border-radius: $box-border-radius / 2;
 	overflow: hidden;
-	float: left;
+	display: inline-block;
 	height: 104px;
 	width: 78px;
 	margin-right: $box-padding;

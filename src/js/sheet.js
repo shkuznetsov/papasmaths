@@ -1,14 +1,18 @@
 var PapasSheet =
 {
+	TASKS_PER_PAGE: 5,
+
 	tasks: [],
 
-	$tasks_container: null,
+	$pages: [],
+
+	$pages_container: null,
 
 	init: function ( )
 	{
 		$.fx.speeds._default = 150;
 
-		this.$tasks_container = $('#tasks-container');
+		this.$pages_container = $('#pages-container');
 		this.parseUrl();
 		this.registerHashListener();
 
@@ -24,9 +28,11 @@ var PapasSheet =
 		{
 			if (!this.ignore_hash_change)
 			{
-				this.$tasks_container.empty();
+				this.$pages = [];
 
 				this.tasks = [];
+
+				this.$pages_container.empty();
 
 				this.parseUrl();
 			}
@@ -46,8 +52,10 @@ var PapasSheet =
 
 			for (var i in specs)
 			{
-				this.appendTask(specs[i]);
+				this.addTask(specs[i]);
 			}
+
+			this.arrangeTaskByPages();
 		}
 	},
 
@@ -73,7 +81,9 @@ var PapasSheet =
 	{
 		if (spec)
 		{
-			this.appendTask(spec);
+			this.addTask(spec);
+
+			this.arrangeTaskByPages();
 
 			PapasTrack.taskAddFinalised(spec);
 		}
@@ -85,15 +95,9 @@ var PapasSheet =
 		this.$add_new_button.fadeIn(this.rebuildUrl.bind(this));
 	},
 
-	appendTask: function ( spec )
+	addTask: function ( spec )
 	{
-		var task = new PapasTask(spec);
-
-		this.$tasks_container.append(task.build());
-
-		this.tasks.push(task);
-
-		return task;
+		this.tasks.push(new PapasTask(spec));
 	},
 
 	deleteTask: function ( task )
@@ -105,6 +109,8 @@ var PapasSheet =
 			delete this.tasks[i];
 
 			this.rebuildUrl();
+
+			this.arrangeTaskByPages();
 		}
 	},
 
@@ -117,5 +123,46 @@ var PapasSheet =
 		this.ignore_hash_change = true;
 
 		window.location.hash = fragment;
+	},
+
+	arrangeTaskByPages: function ( )
+	{
+		for (var i in this.tasks)
+		{
+			// Shortcuts
+			var page_no = Math.floor(i / this.TASKS_PER_PAGE),
+				task_no = i % this.TASKS_PER_PAGE,
+				$task = this.tasks[i].getElement();
+
+			// Create a page if it doesn't exist
+			if (!this.$pages[page_no])
+			{
+				this.$pages[page_no] = $('<div>').attr('class', 'page').appendTo(this.$pages_container);
+			}
+
+			// Page element shortcut
+			var $page = this.$pages[page_no];
+
+			// Check if the task is already on the place it belongs
+			if (!$task.is($page.children('.task').eq(task_no)))
+			{
+				if (task_no)
+				{
+					// Add the task after its predecessor
+					this.tasks[i-1].getElement().after($task);
+				}
+				else
+				{
+					// Add the task to the page
+					$page.append($task);
+				}
+			}
+		}
+
+		// Remove extra pages
+		while (this.$pages.length > (page_no + 1))
+		{
+			this.$pages.pop().remove();
+		}
 	}
 }

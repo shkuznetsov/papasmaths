@@ -43,6 +43,11 @@ PapasTask.prototype.parseOperand = function ( operand )
 	throw 'Operand "' + operand + '" wasn\'t recognised';
 };
 
+PapasTask.prototype.getElement = function ( )
+{
+	return this.$element || this.build();
+};
+
 PapasTask.prototype.build = function ( )
 {
 	try
@@ -75,7 +80,7 @@ PapasTask.prototype.build = function ( )
 				.append(this.buildAnswerCell());
 		}
 
-		this.$element.append(this.buildControls()).append(this.buildPageBreak());
+		this.$element.append(this.buildControls());
 	}
 	catch (e)
 	{
@@ -96,11 +101,6 @@ PapasTask.prototype.buildControls = function ( )
 		.append($('<div>').attr('class', 'red').text('Delete').click(this.onDeleteClicked.bind(this)))
 		.append($('<div>').text('Edit').click(this.onEditClicked.bind(this)));
 
-};
-
-PapasTask.prototype.buildPageBreak = function ( )
-{
-	return $('<div>').attr('class', 'pagebreak noprint').text('Page break');
 };
 
 PapasTask.prototype.onDeleteClicked = function ( )

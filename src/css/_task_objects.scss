@@ -1,0 +1,311 @@
+@mixin obj-img-size ( $size ) {
+	width: $size;
+	height: $size;
+}
+
+// Horisontals
+
+@mixin obj-img-h-l ( $size ) {
+	left: 0;
+}
+
+@mixin obj-img-h-lm ( $size ) {
+	left: 50%;
+	margin-left: $size * -0.25 - 25%;
+}
+
+@mixin obj-img-h-m ( $size ) {
+	left: 50%;
+	margin-left: $size * -0.5;
+}
+
+@mixin obj-img-h-rm ( $size ) {
+	left: 50%;
+	margin-left: 25% - $size * 0.75;
+}
+
+@mixin obj-img-h-r ( $size ) {
+	right: 0;
+}
+
+// Vericals
+
+@mixin obj-img-v-t ( $size ) {
+	top: 0;
+}
+
+@mixin obj-img-v-tm ( $size ) {
+	top: 50%;
+	margin-top: $size * -0.25 - 25%;
+}
+
+@mixin obj-img-v-m ( $size ) {
+	top: 50%;
+	margin-top: $size * -0.5;
+}
+
+@mixin obj-img-v-bm ( $size ) {
+	top: 50%;
+	margin-top: 25% - $size * 0.75;
+}
+
+@mixin obj-img-v-b ( $size ) {
+	bottom: 0;
+}
+
+
+// one
+
+$obj_1_size: 80%;
+
+.task .objects.count-1 img {
+	@include obj-img-size($obj_1_size);
+	@include obj-img-h-m($obj_1_size);
+	@include obj-img-v-m($obj_1_size);
+}
+
+// two
+
+$obj_2_size: 50%;
+
+.task .objects.count-2 img {
+	@include obj-img-size($obj_2_size);
+}
+
+.task .objects.count-2 img:nth-child(2) {
+	@include obj-img-h-r($obj_2_size);
+	@include obj-img-v-b($obj_2_size);
+}
+
+// three
+
+$obj_34_size: 45%;
+
+.task .objects.count-3 img {
+	@include obj-img-size($obj_34_size);
+}
+
+.task .objects.count-3 img:nth-child(2) {
+	@include obj-img-h-r($obj_34_size);
+	@include obj-img-v-t($obj_34_size);
+}
+
+.task .objects.count-3 img:nth-child(3) {
+	@include obj-img-h-m($obj_34_size);
+	@include obj-img-v-b($obj_34_size);
+}
+
+// four
+
+.task .objects.count-4 img {
+	@include obj-img-size($obj_34_size);
+}
+
+.task .objects.count-4 img:nth-child(2) {
+	@include obj-img-h-r($obj_34_size);
+	@include obj-img-v-t($obj_34_size);
+}
+
+.task .objects.count-4 img:nth-child(3) {
+	@include obj-img-h-l($obj_34_size);
+	@include obj-img-v-b($obj_34_size);
+}
+
+.task .objects.count-4 img:nth-child(4) {
+	@include obj-img-h-r($obj_34_size);
+	@include obj-img-v-b($obj_34_size);
+}
+
+// five
+
+$obj_5_size: 33%;
+
+.task .objects.count-5 img {
+	@include obj-img-size($obj_5_size);
+}
+
+.task .objects.count-5 img:nth-child(2) {
+	@include obj-img-h-r($obj_5_size);
+	@include obj-img-v-t($obj_5_size);
+}
+
+.task .objects.count-5 img:nth-child(3) {
+	@include obj-img-h-m($obj_5_size);
+	@include obj-img-v-m($obj_5_size);
+}
+
+.task .objects.count-5 img:nth-child(4) {
+	@include obj-img-h-l($obj_5_size);
+	@include obj-img-v-b($obj_5_size);
+}
+
+.task .objects.count-5 img:nth-child(5) {
+	@include obj-img-h-r($obj_5_size);
+	@include obj-img-v-b($obj_5_size);
+}
+
+// six
+
+$obj_6789_size: 28%;
+
+.task .objects.count-6 img {
+	@include obj-img-size($obj_6789_size);
+}
+
+.task .objects.count-6 img:nth-child(1) {
+	@include obj-img-h-l($obj_6789_size);
+	@include obj-img-v-tm($obj_6789_size);
+}
+
+.task .objects.count-6 img:nth-child(2) {
+	@include obj-img-h-m($obj_6789_size);
+	@include obj-img-v-tm($obj_6789_size);
+}
+
+.task .objects.count-6 img:nth-child(3) {
+	@include obj-img-h-r($obj_6789_size);
+	@include obj-img-v-tm($obj_6789_size);
+}
+
+.task .objects.count-6 img:nth-child(4) {
+	@include obj-img-h-l($obj_6789_size);
+	@include obj-img-v-bm($obj_6789_size);
+}
+
+.task .objects.count-6 img:nth-child(5) {
+	@include obj-img-h-m($obj_6789_size);
+	@include obj-img-v-bm($obj_6789_size);
+}
+
+.task .objects.count-6 img:nth-child(6) {
+	@include obj-img-h-r($obj_6789_size);
+	@include obj-img-v-bm($obj_6789_size);
+}
+
+// seven
+
+.task .objects.count-7 img {
+	@include obj-img-size($obj_6789_size);
+}
+
+.task .objects.count-7 img:nth-child(1) {
+	@include obj-img-h-lm($obj_6789_size);
+	@include obj-img-v-t($obj_6789_size);
+}
+
+.task .objects.count-7 img:nth-child(2) {
+	@include obj-img-h-rm($obj_6789_size);
+	@include obj-img-v-t($obj_6789_size);
+}
+
+.task .objects.count-7 img:nth-child(3) {
+	@include obj-img-h-l($obj_6789_size);
+	@include obj-img-v-m($obj_6789_size);
+}
+
+.task .objects.count-7 img:nth-child(4) {
+	@include obj-img-h-m($obj_6789_size);
+	@include obj-img-v-m($obj_6789_size);
+}
+
+.task .objects.count-7 img:nth-child(5) {
+	@include obj-img-h-r($obj_6789_size);
+	@include obj-img-v-m($obj_6789_size);
+}
+
+.task .objects.count-7 img:nth-child(6) {
+	@include obj-img-h-lm($obj_6789_size);
+	@include obj-img-v-b($obj_6789_size);
+}
+
+.task .objects.count-7 img:nth-child(7) {
+	@include obj-img-h-rm($obj_6789_size);
+	@include obj-img-v-b($obj_6789_size);
+}
+
+// eight
+
+.task .objects.count-8 img {
+	@include obj-img-size($obj_6789_size);
+}
+
+.task .objects.count-8 img:nth-child(2) {
+	@include obj-img-h-m($obj_6789_size);
+	@include obj-img-v-t($obj_6789_size);
+}
+
+.task .objects.count-8 img:nth-child(3) {
+	@include obj-img-h-r($obj_6789_size);
+	@include obj-img-v-t($obj_6789_size);
+}
+
+.task .objects.count-8 img:nth-child(4) {
+	@include obj-img-h-lm($obj_6789_size);
+	@include obj-img-v-m($obj_6789_size);
+}
+
+.task .objects.count-8 img:nth-child(5) {
+	@include obj-img-h-rm($obj_6789_size);
+	@include obj-img-v-m($obj_6789_size);
+}
+
+.task .objects.count-8 img:nth-child(6) {
+	@include obj-img-h-l($obj_6789_size);
+	@include obj-img-v-b($obj_6789_size);
+}
+
+.task .objects.count-8 img:nth-child(7) {
+	@include obj-img-h-m($obj_6789_size);
+	@include obj-img-v-b($obj_6789_size);
+}
+
+.task .objects.count-8 img:nth-child(8) {
+	@include obj-img-h-r($obj_6789_size);
+	@include obj-img-v-b($obj_6789_size);
+}
+
+// nine
+
+.task .objects.count-9 img {
+	@include obj-img-size($obj_6789_size);
+}
+
+.task .objects.count-9 img:nth-child(2) {
+	@include obj-img-h-m($obj_6789_size);
+	@include obj-img-v-t($obj_6789_size);
+}
+
+.task .objects.count-9 img:nth-child(3) {
+	@include obj-img-h-r($obj_6789_size);
+	@include obj-img-v-t($obj_6789_size);
+}
+
+.task .objects.count-9 img:nth-child(4) {
+	@include obj-img-h-l($obj_6789_size);
+	@include obj-img-v-m($obj_6789_size);
+}
+
+.task .objects.count-9 img:nth-child(5) {
+	@include obj-img-h-m($obj_6789_size);
+	@include obj-img-v-m($obj_6789_size);
+}
+
+.task .objects.count-9 img:nth-child(6) {
+	@include obj-img-h-r($obj_6789_size);
+	@include obj-img-v-m($obj_6789_size);
+}
+
+.task .objects.count-9 img:nth-child(7) {
+	@include obj-img-h-l($obj_6789_size);
+	@include obj-img-v-b($obj_6789_size);
+}
+
+.task .objects.count-9 img:nth-child(8) {
+	@include obj-img-h-m($obj_6789_size);
+	@include obj-img-v-b($obj_6789_size);
+}
+
+.task .objects.count-9 img:nth-child(9) {
+	@include obj-img-h-r($obj_6789_size);
+	@include obj-img-v-b($obj_6789_size);
+}
