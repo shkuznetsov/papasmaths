@@ -12,13 +12,13 @@ var PapasSheet =
 	{
 		$.fx.speeds._default = 150;
 
-		this.$add_new_button = $('#add-new-button').on('click', this.onAddNewClicked.bind(this));
-		this.$print_button = $('#print-button').hide().on('click', this.onPrintClicked.bind(this));
+		this.$add_button = $('#add-task-button').on('click', this.onAddNewClicked.bind(this));
+		this.$print_button = $('.print-button').hide().on('click', this.onPrintClicked.bind(this));
 		this.$pages_container = $('#pages-container');
 
-		this.parseUrl();
+		PapasTitleEditor.init();
 
-		this.togglePrintButton();
+		this.parseUrl();
 
 		this.registerHashListener();
 
@@ -31,12 +31,6 @@ var PapasSheet =
 		{
 			if (!this.ignore_hash_change)
 			{
-				this.$pages = [];
-
-				this.tasks = [];
-
-				this.$pages_container.empty();
-
 				this.parseUrl();
 			}
 			else
@@ -51,17 +45,56 @@ var PapasSheet =
 	{
 		if (window.location.hash)
 		{
-			var specs = window.location.hash.substr(1).split(',');
+			var hash = window.location.hash.substr(1);
+				title_pos = hash.lastIndexOf(':');
 
-			for (var i in specs)
+			if (title_pos != -1)
 			{
-				this.addTask(specs[i]);
+				this.title = hash.substr(0, title_pos);
+
+				hash = hash.substr(title_pos + 1);
+			}
+			else
+			{
+				this.title = '';
 			}
 
-			this.arrangeTaskByPages();
+			if (this.specs != hash)
+			{
+				this.specs = hash;
 
-			this.togglePrintButton();
+				this.$pages = [];
+
+				this.tasks = [];
+
+				this.$pages_container.empty();
+
+				var specs = hash.split(',');
+
+				for (var i in specs)
+				{
+					this.addTask(specs[i]);
+				}
+			}
 		}
+		else
+		{
+			this.title = '';
+
+			this.specs = '';
+
+			this.$pages = [];
+
+			this.tasks = [];
+
+			this.$pages_container.empty();
+		}
+
+		PapasTitleEditor.toggleUI(this.title);
+
+		this.arrangeTaskByPages();
+
+		this.togglePrintButton();
 	},
 
 	togglePrintButton: function ( )
@@ -79,9 +112,9 @@ var PapasSheet =
 
 	onAddNewClicked: function ( )
 	{
-		this.$add_new_button.fadeOut(function ( )
+		this.$add_button.fadeOut(function ( )
 		{
-			this.$add_new_button.before((new PapasEditor()).build());
+			this.$add_button.before((new PapasEditor()).build());
 		}
 		.bind(this));
 
@@ -105,7 +138,7 @@ var PapasSheet =
 			PapasTrack.taskAddCanceled();
 		}
 
-		this.$add_new_button.fadeIn(this.rebuildUrl.bind(this));
+		this.$add_button.fadeIn(this.rebuildUrl.bind(this));
 	},
 
 	addTask: function ( spec )
@@ -129,15 +162,24 @@ var PapasSheet =
 		}
 	},
 
+	updateTitle: function ( title )
+	{
+		this.title = title;
+
+		window.document.title = "Papa's Maths" + (title ? (': ' + title) : '');
+
+		this.rebuildUrl();
+	},
+
 	rebuildUrl: function ( )
 	{
-		var fragment = '';
+		this.specs = '';
 
-		for (var i in this.tasks) fragment += (fragment ? ',' : '') + this.tasks[i].spec;
+		for (var i in this.tasks) this.specs += (this.specs ? ',' : '') + this.tasks[i].spec;
 
 		this.ignore_hash_change = true;
 
-		window.location.hash = fragment;
+		window.location.hash = (this.title ? (this.title + ':') : '') + this.specs;
 	},
 
 	arrangeTaskByPages: function ( )

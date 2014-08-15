@@ -87,7 +87,7 @@ PapasTask.prototype.build = function ( )
 		this.$element = $('<div>').attr('class', 'box error noprint')
 			.append($('<h1>').text("Erm, this is embarassing, but papa didn't understand this: " + this.spec))
 			.append($('<h2>').text(e))
-			.append($('<div>').attr('class', 'controls noprint')
+			.append($('<div>').attr('class', 'controls')
 				.append($('<div>').attr('class', 'red').text('Delete')
 					.on('click', this.onDeleteClicked.bind(this))));
 	}

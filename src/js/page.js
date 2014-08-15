@@ -2,8 +2,13 @@ var PapasPage =
 {
 	init: function ( )
 	{
-		var $header = $('.header');
+		this.$header = $('.header');
 
-		$header.after($header.clone().addClass('shadow'));
+		this.addShadowHeader();
+	},
+
+	addShadowHeader: function ( )
+	{
+		this.$header.after(this.$header.clone().addClass('shadow'));
 	}
 };

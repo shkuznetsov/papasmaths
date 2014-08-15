@@ -1,6 +1,7 @@
 @import 'task_page';
 
 .task {
+	transition: background-color $transition-speed ease;
 	white-space: nowrap;
 	line-height: 0;
 }

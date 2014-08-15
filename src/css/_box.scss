@@ -6,6 +6,7 @@ $box-border-radius: 10px;
 // Background colors
 $box-background-header: #24355e;
 $box-background-error: #fcc;
+$box-background-title-editor: #b4bfd8;
 $box-background-editor: #b4bfd8;
 $box-background-task: #ff9;
 $box-background-add: #6c6;
@@ -21,7 +22,6 @@ $transition-speed: 0.15s;
 	margin: $box-margin;
 	padding: $box-padding;
 	position: relative;
-	transition: all $transition-speed ease;
 }
 
 // Controls
