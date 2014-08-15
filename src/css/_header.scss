@@ -71,6 +71,7 @@
 	color: #fff;
 	text-decoration: none;
 	cursor: pointer;
+	transition: all $transition-speed ease;
 }
 
 .header .menu .button:hover {
