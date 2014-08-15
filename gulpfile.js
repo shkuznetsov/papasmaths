@@ -28,7 +28,7 @@ var
 		paths: {
 			html: {
 				watch: 'src/**/*.html',
-				input: 'src/index.html',
+				input: ['src/index.html', 'src/library.html'],
 				output: {
 					concat: 'dist/debug.html',
 					min: 'dist/index.html',
@@ -108,17 +108,13 @@ gulp.task('build-html', function ( )
 	return gulp.src(options.paths.html.input)
 		.pipe(include())
 		.pipe(template({pkg: pkg, config: config}))
-		.pipe(rename(options.paths.html.output.concat))
-		.pipe(gulp.dest('./'))
+		.pipe(gulp.dest('dist/'))
 		.pipe(replace(path.basename(options.paths.js.output.concat), path.basename(options.paths.js.output.min)))
 		.pipe(replace(path.basename(options.paths.css.output.concat), path.basename(options.paths.css.output.min)))
 		.pipe(minhtml(options.minhtml))
 		.pipe(uglifyhtml(options.uglify))
-		.pipe(rename(options.paths.html.output.min))
-		.pipe(gulp.dest('./'))
 		.pipe(gzip())
-		.pipe(rename(options.paths.html.output.gz))
-		.pipe(gulp.dest('./'));
+		.pipe(gulp.dest('dist/'));
 });
 
 gulp.task('build-img', function ( )

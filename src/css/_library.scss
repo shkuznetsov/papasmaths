@@ -1,0 +1,8 @@
+p {
+	margin: $box-margin ($box-margin + $box-padding / 2);
+}
+
+p.heading {
+	margin-top: $box-margin + $box-padding / 2;
+	font-size: 140%;
+}
