@@ -1,8 +1,18 @@
 p {
-	margin: $box-margin ($box-margin + $box-padding / 2);
+	margin: $box-margin ($box-margin + $box-padding / 2) 0 ($box-margin + $box-padding / 2);
 }
 
-p.heading {
-	margin-top: $box-margin + $box-padding / 2;
+h2 {
+	margin: ($box-margin + $box-padding / 2) ($box-margin + $box-padding / 2) $box-margin ($box-margin + $box-padding / 2);
 	font-size: 140%;
+	font-weight: normal;
+}
+
+.library-set {
+	float: left;
+	width: 33%;
+}
+
+.library-set ol {
+	margin: $box-margin ($box-margin + $box-padding / 2);
 }

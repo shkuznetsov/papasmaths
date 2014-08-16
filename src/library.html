@@ -6,8 +6,19 @@
 	</div>
 </div>
 
-<p class="heading">Dear parent,</p>
+<h2>Dear parent,</h2>
 <p>Papa has created quite a lot of task sheets for his little one to crunch through and he thinks you may want to use them too (or use them as a starting point for your own set). The below may or may not match your child's maths level or speed of learning, so please be creative, adjust it as needed, don't assume this is a kind of a definitive course or an officially approved study programme.</p>
+
+<% _.forEach(library, function ( set ) { %>
+<div class="library-set">
+	<h2><%= set.title %></h2>
+	<ol>
+		<% _.forEach(set.sheets, function ( sheet, no ) { %>
+		<li><a href="/#<%= set.title %> #<%= no %>: <%= sheet.title %>:<%= sheet.specs %>"><%= sheet.title %></a></li>
+		<% }); %>
+	</ol>
+</div>
+<% }); %>
 
 <script>
 
