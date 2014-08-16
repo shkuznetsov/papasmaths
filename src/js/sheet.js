@@ -92,6 +92,8 @@ var PapasSheet =
 
 		PapasTitleEditor.toggleUI(this.title);
 
+		this.updateBrowserTitle();
+
 		this.arrangeTaskByPages();
 
 		this.togglePrintButton();
@@ -166,9 +168,14 @@ var PapasSheet =
 	{
 		this.title = title;
 
-		window.document.title = "Papa's Maths" + (title ? (': ' + title) : '');
+		this.updateBrowserTitle();
 
 		this.rebuildUrl();
+	},
+
+	updateBrowserTitle: function ( )
+	{
+		window.document.title = "Papa's Maths" + (this.title ? (': ' + this.title) : '');
 	},
 
 	rebuildUrl: function ( )
