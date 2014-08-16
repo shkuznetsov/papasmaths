@@ -7,14 +7,17 @@
 </div>
 
 <h2>Dear parent,</h2>
-<p>Papa has created a few task sheets for his little one to crunch through and published them below. You may want to use them as is or as a starting point for your own set, but please don't assume this is a kind of a definitive course or an officially approved study programme &mdash; it isn't.</p>
+<p>Papa has created a few task sheets for his little one to crunch through and published them below. You may want to use them as is or as a starting point for your own set, but please don't assume this is a kind of a definitive course or an officially approved study programme &mdash; it isn't. We're just moving at our own pace, which may or may not be adequate for you.</p>
 
 <% _.forEach(library, function ( set ) { %>
 <div class="library-set">
 	<h2><%= set.title %></h2>
 	<ol>
 		<% _.forEach(set.sheets, function ( sheet, no ) { %>
-		<li><a href="/#<%= set.title %> #<%= no %>: <%= sheet.title %>:<%= sheet.specs %>"><%= sheet.title %></a></li>
+		<li>
+			<a href="/#<%= set.title %> <%= no + 1 %> / <%= sheet.title %>:<%= sheet.specs %>" title="<%= sheet.specs %>"><%= sheet.title %></a>
+			<span>(<%= sheet.specs.split(",").length %> tasks)</span>
+		</li>
 		<% }); %>
 	</ol>
 </div>

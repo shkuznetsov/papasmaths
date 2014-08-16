@@ -16,3 +16,8 @@ h2 {
 .library-set ol {
 	margin: $box-margin ($box-margin + $box-padding / 2);
 }
+
+.library-set li span {
+	color: #ccc;
+	font-size: 80%;
+}
