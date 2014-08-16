@@ -28,7 +28,7 @@ var
 		paths: {
 			html: {
 				watch: 'src/**/*.html',
-				input: ['src/index.html', 'src/library.html'],
+				input: ['src/index.html', 'src/library.html', 'src/about.html'],
 				output: {
 					concat: 'dist/debug.html',
 					min: 'dist/index.html',
@@ -105,9 +105,11 @@ gulp.task('build-css', function ( )
 
 gulp.task('build-html', function ( )
 {
+	var library = JSON.parse(fs.readFileSync('src/library.json'));
+
 	return gulp.src(options.paths.html.input)
 		.pipe(include())
-		.pipe(template({pkg: pkg, config: config}))
+		.pipe(template({pkg: pkg, config: config, library: library}))
 		.pipe(gulp.dest('dist/'))
 		.pipe(replace(path.basename(options.paths.js.output.concat), path.basename(options.paths.js.output.min)))
 		.pipe(replace(path.basename(options.paths.css.output.concat), path.basename(options.paths.css.output.min)))

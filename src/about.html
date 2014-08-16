@@ -1,0 +1,22 @@
+//= include _header.html
+
+		<a class="button active" href="/about.html">About</a>
+		<a class="button" href="/library.html">Tasks library</a>
+		<a class="button" href="/">Tasks editor</a>
+	</div>
+</div>
+
+<h2>One, two, three...</h2>
+<p>Nothing is here yet, sorry. Please feel free to drop me a note if you've got a question or an idea or something else: <a href="<%= pkg.author.email %>"><%= pkg.author.email %></a>. Thanks!</p>
+
+<script>
+
+$(function()
+{
+	PapasPage.init();
+	PapasTrack.init('<%= config.ga %>');
+});
+
+</script>
+</body>
+</html>
