@@ -27,13 +27,8 @@ var
 	options = {
 		paths: {
 			html: {
-				watch: 'src/**/*.html',
-				input: ['src/index.html', 'src/library.html', 'src/about.html'],
-				output: {
-					concat: 'dist/debug.html',
-					min: 'dist/index.html',
-					gz: 'dist/index.html.gz'
-				}
+				watch: ['src/*.html', 'src/*.json'],
+				input: ['src/index.html', 'src/library.html', 'src/about.html']
 			},
 			css: {
 				watch: 'src/css/**/*.scss',
