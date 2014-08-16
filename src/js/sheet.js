@@ -61,7 +61,7 @@ var PapasSheet =
 
 			if (this.specs != hash)
 			{
-				this.specs = hash;
+				this.specs = hash.trim();
 
 				this.$pages = [];
 
@@ -69,11 +69,14 @@ var PapasSheet =
 
 				this.$pages_container.empty();
 
-				var specs = hash.split(',');
-
-				for (var i in specs)
+				if (this.specs)
 				{
-					this.addTask(specs[i]);
+					var specs = hash.split(',');
+
+					for (var i in specs)
+					{
+						this.addTask(specs[i]);
+					}
 				}
 			}
 		}
