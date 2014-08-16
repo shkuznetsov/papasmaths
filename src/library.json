@@ -1,13 +1,17 @@
 [
 	{
-		"title": "Set 1",
+		"title": "Basic addition",
 		"sheets":
 		[
-			{"title": "Sheet 1", "specs": "one+one,two+one,three+one,four+one,five+one,three+one,seven+one,six+one,nine+one,eight+one"},
-			{"title": "Sheet 2", "specs": "one+one,two+one,three+one,four+one,five+one,three+one,seven+one,six+one,nine+one,eight+one"},
-			{"title": "Sheet 3", "specs": "one+one,two+one,three+one,four+one,five+one,three+one,seven+one,six+one,nine+one,eight+one"},
-			{"title": "Sheet 4", "specs": "one+one,two+one,three+one,four+one,five+one,three+one,seven+one,six+one,nine+one,eight+one"},
-			{"title": "Sheet 5", "specs": "one+one,two+one,three+one,four+one,five+one,three+one,seven+one,six+one,nine+one,eight+one"}
+			{"title": "Plus one objects", "specs": "one+one,two+one,three+one,four+one,five+one,three+one,seven+one,six+one,nine+one,eight+one"},
+			{"title": "Plus one objects", "specs": "two+one,three+one,four+one,six+one,eight+one,five+one,seven+one,nine+one,six+one,three+one"},
+			{"title": "Plus one objects", "specs": "five+one,six+one,seven+one,three+one,four+one,nine+one,eight+one,seven+one,five+one,three+one"},
+			{"title": "Plus one objects transitivity", "specs": "one+one,two+one,one+two,three+one,one+three,three+one,one+three,four+one,one+four,two+two"},
+			{"title": "Plus one objects and number", "specs": "one+1,two+1,three+1,four+1,five+1,three+1,seven+1,six+1,nine+1,eight+1"},
+			{"title": "Plus one objects and number", "specs": "two+1,three+1,four+1,six+1,eight+1,five+1,seven+1,nine+1,six+1,three+1"},
+			{"title": "Plus one objects and numbers mixed", "specs": "one+one,one+1,1+1,two+1,2+1,three+one,three+1,3+1,four+1,4+1"},
+			{"title": "Plus one objects and numbers mixed", "specs": "two+1,2+1,three+1,3+1,4+1,five+1,5+1,six+1,6+1,7+1"},
+			{"title": "Plus one objects and numbers mixed", "specs": "five+1,5+1,six+1,6+1,7+1,eight+1,8+1,nine+1,9+1,10+1"}
 		]
 	}
 ]
