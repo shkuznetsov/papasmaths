@@ -6,6 +6,7 @@ var PapasTask = function ( spec )
 PapasTask.OPERATORS = ['+', '-', '*', '/', '?'];
 PapasTask.OPERATOR_LABELS = ['+', '&minus;', '&times;', '/', '&lt;&gt;'];
 PapasTask.OBJECT_NUMS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+PapasTask.OBJECT_ICONS = 80;
 
 PapasTask.prototype.parse = function ( )
 {
@@ -164,7 +165,7 @@ PapasTask.prototype.buildOperand = function ( operand )
 	{
 		if (!this.object)
 		{
-			this.object = Math.ceil(Math.random() * 60) || 1;
+			this.object = Math.ceil(Math.random() * PapasTask.OBJECT_ICONS) || 1;
 
 			if (this.object < 10) this.object = '0' + this.object;
 		}
