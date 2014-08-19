@@ -102,6 +102,16 @@ var PapasSheet =
 		this.togglePrintButton();
 	},
 
+	isObjectUsed: function ( obj_id, exclude_task )
+	{
+		for (var i in this.tasks)
+		{
+			if (this.tasks[i].getObjectId() == obj_id && this.tasks[i] != exclude_task) return true;
+		}
+
+		return false;
+	},
+
 	togglePrintButton: function ( )
 	{
 		if (this.tasks.length) this.$print_button.fadeIn();

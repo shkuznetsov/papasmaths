@@ -7,6 +7,7 @@ PapasTask.OPERATORS = ['+', '-', '*', '/', '?'];
 PapasTask.OPERATOR_LABELS = ['+', '&minus;', '&times;', '/', '&lt;&gt;'];
 PapasTask.OBJECT_NUMS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
 PapasTask.OBJECT_ICONS = 80;
+PapasTask.OBJECT_ICON_RANDOMS = 5;
 
 PapasTask.prototype.parse = function ( )
 {
@@ -153,6 +154,20 @@ PapasTask.prototype.onEdited = function ( spec )
 	return this.$element;
 };
 
+PapasTask.prototype.getRandomObjectId = function ( )
+{
+	var randoms = 0;
+
+	while (PapasSheet.isObjectUsed(this.object_id = Math.ceil(Math.random() * PapasTask.OBJECT_ICONS) || 1, this) && (++randoms < PapasTask.OBJECT_ICON_RANDOMS));
+
+	return this.object_id;
+};
+
+PapasTask.prototype.getObjectId = function ( )
+{
+	return this.object_id;
+};
+
 PapasTask.prototype.buildOperand = function ( operand )
 {
 	var $operand = $('<div>');
@@ -165,7 +180,7 @@ PapasTask.prototype.buildOperand = function ( operand )
 	{
 		if (!this.object)
 		{
-			this.object = Math.ceil(Math.random() * PapasTask.OBJECT_ICONS) || 1;
+			this.object = this.getRandomObjectId();
 
 			if (this.object < 10) this.object = '0' + this.object;
 		}
