@@ -8,16 +8,11 @@ h2 {
 	font-weight: normal;
 }
 
-.library-set {
-	float: left;
-	width: 50%;
-}
-
-.library-set ol {
+ol.library-set {
 	margin: $box-margin ($box-margin + $box-padding / 2);
 }
 
-.library-set li span {
+ol.library-set li span {
 	color: #ccc;
 	font-size: 80%;
 }
