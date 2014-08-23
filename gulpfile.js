@@ -135,29 +135,62 @@ gulp.task('watch', ['build'], function ( )
 
 gulp.task('bump', function ( cb )
 {
-	var version = args['ver'];
-
-	if (typeof version != 'undefined')
+	if (args['ver'])
 	{
-		var message = 'Release ' + version,
-			tag = options.git.tagPrefix + version.replace(/\./g, '-');
+		var params = {version: args['ver']};
 
-		return gulp.src('package.json')
-			.pipe(bump({version: version}))
-			.pipe(gulp.dest('./'))
-			.pipe(git.commit(message))
-			.on('end', function ( )
-			{
-				return this.pipe(git.tag(tag, message, {}, function ( )
-				{
-					git.push(options.git.remote, options.git.branch, {args: '--tags'}).end();
-				}));
-			});
+		gutil.log("Bumping to version: " + gutil.colors.green(args['ver']));
+	}
+	else if (args['major'])
+	{
+		var params = {type: 'major'};
+
+		gutil.log("Bumping " + gutil.colors.green('major') + " version");
+	}
+	else if (args['minor'])
+	{
+		var params = {type: 'minor'};
+
+		gutil.log("Bumping " + gutil.colors.green('minor') + " version");
 	}
 	else
 	{
-		cb();
+		gutil.log("Bumping " + gutil.colors.green('bugfix') + " version");
 	}
+
+	gulp.src('package.json')
+		.pipe(bump(params))
+		.pipe(gulp.dest('./'))
+		.on('end', function ( )
+		{
+			pkg = JSON.parse(fs.readFileSync('package.json'));
+
+			var message = 'Release ' + pkg.version,
+				tag = options.git.tagPrefix + pkg.version.replace(/\./g, '-'),
+				exec = function ( cmd, success, next_step )
+				{
+					require('child_process').exec(cmd, function( err, stdout, stderr )
+					{
+						if (err)
+						{
+							cb(stdout + stderr);
+						}
+						else
+						{
+							gutil.log(success);
+							next_step();
+						}
+					});
+				};
+
+			exec('git commit -m "' + message + '" package.json', 'Commited successfully', function ( )
+			{
+				exec('git tag -m "' + message + '" ' + tag, 'Tagged successfully', function ( )
+				{
+					exec('git push ' + options.git.remote + ' ' + options.git.branch + ' --tags', 'Pushed successfully', cb);
+				});
+			});
+		});
 });
 
 gulp.task('upload', ['build'], function ( )
