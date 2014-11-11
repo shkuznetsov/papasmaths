@@ -133,6 +133,8 @@ gulp.task('watch', ['build'], function ( )
 	gulp.watch([options.paths.js.watch, options.paths.css.watch, options.paths.html.watch], ['build']);
 });
 
+gulp.task('default', ['build', 'watch']);
+
 gulp.task('bump', function ( cb )
 {
 	if (args['ver'])
