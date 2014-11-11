@@ -1,5 +1,7 @@
 var PapasTitleEditor =
 {
+	PLACEHOLDER_TEXT: 'Click here to start entering title text...',
+
 	visible: false, // Nothing displayed
 
 	title: '',
@@ -8,7 +10,12 @@ var PapasTitleEditor =
 	{
 		this.$button = $('#add-title-button').on('click', this.onAddClicked.bind(this));
 		this.$editor = $('#title-editor');
-		this.$input = $('#title-input').on('input keyup change', this.onChanged.bind(this));
+		this.$input = $('#title-input')
+			.on('input keyup change', this.onChanged.bind(this))
+			.on('focus', this.hidePlaceholder.bind(this))
+			.on('blur', this.showPlaceholder.bind(this));
+
+		this.showPlaceholder();
 
 		$('#title-close').on('click', this.onDeleteClicked.bind(this));
 	},
@@ -79,5 +86,15 @@ var PapasTitleEditor =
 
 			PapasSheet.updateTitle(this.title);
 		}
+	},
+
+	hidePlaceholder: function ( )
+	{
+		this.$input.prop('placeholder', '');
+	},
+
+	showPlaceholder: function ( )
+	{
+		this.$input.prop('placeholder', this.PLACEHOLDER_TEXT);
 	}
 }
