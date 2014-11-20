@@ -1,0 +1,32 @@
+.help-button {
+	display: inline-block;
+	padding: 4px 8px;
+	margin: 4px 4px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-ms-border-radius: 8px;
+	border-radius: 8spx;
+	border: dashed 1px;
+	transition: all $transition-speed ease;
+}
+
+.help-button-menu {
+	background-image: url(/img/jeans.png);
+	border-color: #fff;
+	color: #fff;
+}
+
+.help-button-menu--:hover {
+	background-image: none;
+	background-color: #fff;
+	color: #000;
+	border-color: #008;
+}
+
+.help-button-green {
+	border-color: #6c6;
+}
+.help-button-red {
+	border-color: red;
+	color: red;
+}

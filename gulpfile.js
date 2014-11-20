@@ -28,7 +28,7 @@ var
 		paths: {
 			html: {
 				watch: ['src/*.html', 'src/*.json'],
-				input: ['src/index.html', 'src/library.html', 'src/about.html']
+				input: ['src/index.html', 'src/library.html', 'src/help.html', 'src/about.html']
 			},
 			css: {
 				watch: 'src/css/**/*.scss',
