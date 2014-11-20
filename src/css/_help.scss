@@ -8,6 +8,13 @@
 	border-radius: 8spx;
 	border: dashed 1px;
 	transition: all $transition-speed ease;
+	cursor: default;
+}
+
+.help-button:hover {
+	background-color: #000;
+	color: #fff;
+	border: solid #000 1px;
 }
 
 .help-button-menu {
@@ -16,7 +23,7 @@
 	color: #fff;
 }
 
-.help-button-menu--:hover {
+.help-button-menu:hover {
 	background-image: none;
 	background-color: #fff;
 	color: #000;
@@ -26,7 +33,20 @@
 .help-button-green {
 	border-color: #6c6;
 }
+
+.help-button-green:hover {
+	background-color: #6c6;
+	border-color: #6c6;
+	color: #fff;
+}
+
 .help-button-red {
 	border-color: red;
 	color: red;
+}
+
+.help-button-red:hover {
+	background-color: red;
+	border-color: red;
+	color: #fff;
 }
