@@ -37,5 +37,13 @@
 			"0+10,10+10,20+10,30+10,40+10,50+10,60+10,70+10,80+10,90+10",
 			"10+20,20+30,30+40,40+50,50+50,60+20,70+30,80+20,90+10,60+40"
 		]
+	},
+	{
+		"title": "Basic subtraction",
+		"sheets":
+		[
+			"nine-one,eight-one,seven-one,six-one,five-one,four-one,three-one,two-one,one-one,10-1",
+			"nine-two,eight-two,seven-two,six-two,five-two,four-two,three-two,two-two,nine-one,10-2"
+		]
 	}
 ]
