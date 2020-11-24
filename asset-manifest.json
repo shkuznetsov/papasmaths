@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/papasmaths/static/css/main.418f94df.chunk.css",
+    "main.js": "/papasmaths/static/js/main.3a2cd30e.chunk.js",
+    "main.js.map": "/papasmaths/static/js/main.3a2cd30e.chunk.js.map",
+    "runtime-main.js": "/papasmaths/static/js/runtime-main.39722208.js",
+    "runtime-main.js.map": "/papasmaths/static/js/runtime-main.39722208.js.map",
+    "static/js/2.72a0e9eb.chunk.js": "/papasmaths/static/js/2.72a0e9eb.chunk.js",
+    "static/js/2.72a0e9eb.chunk.js.map": "/papasmaths/static/js/2.72a0e9eb.chunk.js.map",
+    "index.html": "/papasmaths/index.html",
+    "precache-manifest.b9d4095c5e642fc1decf88784cdd9899.js": "/papasmaths/precache-manifest.b9d4095c5e642fc1decf88784cdd9899.js",
+    "service-worker.js": "/papasmaths/service-worker.js",
+    "static/css/main.418f94df.chunk.css.map": "/papasmaths/static/css/main.418f94df.chunk.css.map",
+    "static/js/2.72a0e9eb.chunk.js.LICENSE.txt": "/papasmaths/static/js/2.72a0e9eb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.39722208.js",
+    "static/js/2.72a0e9eb.chunk.js",
+    "static/css/main.418f94df.chunk.css",
+    "static/js/main.3a2cd30e.chunk.js"
+  ]
+}
